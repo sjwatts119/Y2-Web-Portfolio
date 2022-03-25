@@ -1,9 +1,31 @@
 body{
-    background-color: #242c36;
-    color:white;
+    color:black;
     overflow:hidden;
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
+
+.canvas-edit{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    background-image: linear-gradient(125deg,#0b4f70,#0053a1,#001570);
+    background-size: 400% 400%;
+    animation: bganimation 25s infinite;
+    text-shadow: black;
+}
+
+@keyframes bganimation {
+    0%{
+      background-position: 0% 50%;
+    }
+    50%{
+      background-position: 100% 50%;
+    }
+    100%{
+      background-position: 0% 50%;
+    }
+  }
 
 h2{
     font-size: 40px;
@@ -20,8 +42,10 @@ h2{
     padding:50px;
     padding-top:35px;
     padding-bottom:35px;
-    background-color:#354150;
+    background-color:white;
     border-radius: 10px;
+    border-color: black;
+    border-width: 2px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -41,16 +65,16 @@ textarea {
     margin-top: 6px;
     margin-bottom: 16px;
     resize: vertical;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 label {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .formButton {
     display:block;
-    background-color: #41d674;
+    background-color: #533A7B;
     color: white;
     padding: 12px 25px;
     border: none;
@@ -76,3 +100,11 @@ label {
 .loginError:empty {
     padding: 0px;
 }
+
+canvas{
+    width: 100vw;
+    height: 100vh;
+  }
+  .canvas-edit{
+    position:absolute;
+  }

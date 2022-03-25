@@ -7,7 +7,7 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
     $password = mysqli_real_escape_string($db_connect,$_POST["password"]);
 
     //If passed email in invalid format, kill login attempt.
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
         die ("Invalid Email Address");
     }
 
