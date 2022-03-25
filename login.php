@@ -1,4 +1,5 @@
-<?php include_once "php/loginError.php" ?>
+<?php include_once "php/auto_redirect.php" ?>
+<?php include_once "php/login_error.php" ?>
 
 <!doctype html>
 
@@ -24,12 +25,10 @@
 <body id="stop-scrolling">
   <div class="preloader"></div>
 
-        <!-- Masthead-->
         <div class="canvas-edit">
             <canvas></canvas>
-
         </div>
-          
+        
             <div class="animated-elements animated-reversed" id="squarefly-1"></div>
             <div class="animated-elements animated-forward" id="squarefly-2"></div>
             <div class="animated-elements animated-reversed" id="squarefly-3"></div>

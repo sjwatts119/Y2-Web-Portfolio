@@ -15,7 +15,7 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
     "SELECT
     *
     FROM
-    `t_users`
+    `users`
     WHERE
     `email` = '$email'";
 
@@ -29,9 +29,9 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
             session_start();
             $_SESSION["auth"] = $result["access"];
             header("Location: ../secure/home.php");
-
         }
         else{
+            //if password is incorrect
             header("Location: ../login.php?error=2");
         }
     }
