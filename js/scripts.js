@@ -1,15 +1,5 @@
-function preloaderFadeOutInit(){
-  $('.preloader').fadeOut('slow');
-  $('body').attr('class','');
-  }
-  // Window load function
-  jQuery(window).on('load', function () {
-  (function ($) {
-  preloaderFadeOutInit();
-  })(jQuery);
-  });
-    
-    //this function will turn the rain off on mobile
+
+//this function will turn the rain off on mobile
     function rainMobile(xys) {
 
         if (xys.matches) { // If media query matches

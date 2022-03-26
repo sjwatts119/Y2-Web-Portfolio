@@ -65,3 +65,53 @@
 
 <script src="js/scripts.js"></script>
 <script rel="preconnect" src="js/preloader.js"></script>
+
+<script>
+
+function Login()
+        {
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LeIFNAeAAAAAGRwmqUlTMIbFTEnLy8evjN6qxnO', { action: 'create_comment' } ).then(function (token) {
+                    $.ajax({
+                        //Populates the AJAX request.
+                        url: './php/auth.php',
+                        type: 'POST',
+                        data: $('.loginForm').serialize() + "&token=" + token,
+                        success: function (response)
+                        {
+                            //This function will run if the request was successful.
+
+                            //If the server replies with 'true', redirect them to another page.
+                            if (response == "true")
+                            {
+                                window.location.href = "index.php";
+                            }
+                            else
+                            {
+                                //Otherwise, display an error message.
+                                alert("Error: " + response);
+                            }
+                        },
+                        error: function()
+                        {
+                            //This function will run if the request failed.
+                            alert("Something went wrong with the AJAX call.");
+                        }
+                    });
+                });
+            });
+        }
+
+        //This event will execute when a subsequent
+        //form with the correct ID is submitted.
+
+        $("#login-form").submit(function (event) {
+
+            //This prevents the default synchronous action.
+            event.preventDefault();
+            
+            Login();
+
+        });
+
+</script>

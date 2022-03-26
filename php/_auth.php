@@ -1,6 +1,15 @@
 <?php
 if(isset($_POST["email"]) or isset($_POST["password"]))
 {
+    $captcha = $_POST['token'];
+    $secretKey = '6LeIFNAeAAAAAOYx8E9gHFhWYWI-3TsQDPuKNJ-o';
+    $reCAPTCHA = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha)));
+
+    if ($reCAPTCHA->score <= 0.5)
+    {
+        die("You are a bot!");
+    }
+
     //If the username and password are present, move on to checking creds against the database.
     include_once("_connect.php");
     $email = mysqli_real_escape_string($db_connect,$_POST["email"]);
@@ -40,7 +49,6 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
         header("Location: ../index.php?error=1");
     }
 }
-
 
 else
 {

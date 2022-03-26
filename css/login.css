@@ -38,7 +38,7 @@ h2{
     height:100vh;
 }
 
-.loginForm{
+#loginForm{
     padding:50px;
     padding-top:35px;
     padding-bottom:35px;
