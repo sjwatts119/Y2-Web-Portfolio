@@ -75,7 +75,7 @@
 function Login()
         {
             grecaptcha.ready(function() {
-                grecaptcha.execute('6LdSkBQfAAAAAEBkLlcljJTxLXzJmhmDB0QqyGij', { action: 'create_comment' } ).then(function (token) {
+                grecaptcha.execute('6LdSkBQfAAAAAEBkLlcljJTxLXzJmhmDB0QqyGij', { action: 'submit' } ).then(function (token) {
                     $.ajax({
                         //Populates the AJAX request.
                         url: './php/_auth.php',

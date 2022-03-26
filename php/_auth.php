@@ -5,7 +5,7 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
     $secretKey = '6LdSkBQfAAAAANbjGoWfyGFE_O5LnC_l8ke7sIdH';
     $reCAPTCHA = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha)));
 
-    if ($reCAPTCHA->score >= 0.5)
+    if ($reCAPTCHA->success == true && $reCAPTCHA->score >= 0.5)
     {
             //If the username and password are present, move on to checking creds against the database.
             include_once("_connect.php");
