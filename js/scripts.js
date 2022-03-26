@@ -1,3 +1,14 @@
+function preloaderFadeOutInit(){
+  $('.preloader').fadeOut('slow');
+  $('body').attr('class','');
+  }
+  // Window load function
+  jQuery(window).on('load', function () {
+  (function ($) {
+  preloaderFadeOutInit();
+  })(jQuery);
+  });
+    
     //this function will turn the rain off on mobile
     function rainMobile(xys) {
 
@@ -83,5 +94,3 @@
       var xys = window.matchMedia("(min-width: 992px)")
       rainMobile(xys); // Call listener function at run time
       xys.addListener(rainMobile);
-       
-    

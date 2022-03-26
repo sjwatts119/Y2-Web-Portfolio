@@ -32,12 +32,12 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
         }
         else{
             //if password is incorrect
-            header("Location: ../login.php?error=2");
+            header("Location: ../index.php?error=2");
         }
     }
     else{
         //if email not found
-        header("Location: ../login.php?error=1");
+        header("Location: ../index.php?error=1");
     }
 }
 
@@ -45,7 +45,7 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
 else
 {
 //If username and/or password NOT found, redirect user to login page.
-header("Location: ../login.php?error=1");
+header("Location: ../index.php?error=1");
 
 }
 ?>
