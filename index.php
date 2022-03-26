@@ -62,6 +62,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <!-- Including BootStrap JavaScript Dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- reCaptcha API -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LdSkBQfAAAAAEBkLlcljJTxLXzJmhmDB0QqyGij"></script>
 
 <script src="js/scripts.js"></script>
 <script rel="preconnect" src="js/preloader.js"></script>
@@ -71,10 +73,10 @@
 function Login()
         {
             grecaptcha.ready(function() {
-                grecaptcha.execute('6LeIFNAeAAAAAGRwmqUlTMIbFTEnLy8evjN6qxnO', { action: 'create_comment' } ).then(function (token) {
+                grecaptcha.execute('6LdSkBQfAAAAAEBkLlcljJTxLXzJmhmDB0QqyGij', { action: 'create_comment' } ).then(function (token) {
                     $.ajax({
                         //Populates the AJAX request.
-                        url: './php/auth.php',
+                        url: './php/_auth.php',
                         type: 'POST',
                         data: $('.loginForm').serialize() + "&token=" + token,
                         success: function (response)
@@ -95,7 +97,7 @@ function Login()
                         error: function()
                         {
                             //This function will run if the request failed.
-                            alert("Something went wrong with the AJAX call.");
+                            alert("Error");
                         }
                     });
                 });
@@ -105,7 +107,7 @@ function Login()
         //This event will execute when a subsequent
         //form with the correct ID is submitted.
 
-        $("#login-form").submit(function (event) {
+        $(".loginForm").submit(function (event) {
 
             //This prevents the default synchronous action.
             event.preventDefault();
