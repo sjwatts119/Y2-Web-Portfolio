@@ -37,7 +37,7 @@
             <div class="animated-elements animated-reversed" id="squarefly-5"></div>
 
             <div class="form-login">
-              <form class="loginForm" method="POST" action="php/_auth.php" name="login_form">
+              <form class="loginForm" method="POST" name="login_form">
                 <h2>Log In</h2>
               
                 <label for="formEmail">Email</label>
@@ -46,8 +46,9 @@
                 <label for="formPassword">Password</label>
                 <input type="password" id="formPassword" name="password" placeholder="Your Password" required>
 
-                <div class="loginError"><?php echo $errorMessageEmail; ?></div>
-                <div class="loginError"><?php echo $errorMessagePassword; ?></div>
+                <div class="loginError" id="errorEmail" style="display:none;">Email Address not Found</div>
+                <div class="loginError" id="errorPassword" style="display:none;">Your password is Incorrect</div>
+                <div class="loginError" id="errorCaptcha" style="display:none;">reCaptcha score is Too Low.</div>
                 <div class="loginError"><?php echo $errorMessageAuth; ?></div>
         
                 <button class="formButton" id="submitForm" type="submit">Login</button>
@@ -66,6 +67,7 @@
 <script src="https://www.google.com/recaptcha/api.js?render=6LdSkBQfAAAAAEBkLlcljJTxLXzJmhmDB0QqyGij"></script>
 
 <script src="js/scripts.js"></script>
+<script src="js/login-error.js"></script>
 <script rel="preconnect" src="js/preloader.js"></script>
 
 <script>
@@ -86,12 +88,11 @@ function Login()
                             //If the server replies with 'true', redirect them to another page.
                             if (response == "true")
                             {
-                                window.location.href = "index.php";
+                                window.location.href = "secure/home.php";
                             }
                             else
                             {
-                                //Otherwise, display an error message.
-                                alert("Error: " + response);
+                              loginError(response);
                             }
                         },
                         error: function()

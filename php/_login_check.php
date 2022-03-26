@@ -9,10 +9,10 @@ if(isset($_SESSION["auth"]))
         //Access is good, webpage will load as normal.
     }
     else{
-        header("Location: ../index.php?error=3");
+        header("Location: ../index.php?error=1");
     }
 }
 else{
-    header("Location: ../index.php?error=3");
+    header("Location: ../index.php?error=1");
 }
 ?>
