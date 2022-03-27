@@ -1,14 +1,12 @@
 <?php
 session_start();
 
-if(isset($_SESSION["auth"]))
+if(isset($_SESSION['auth']))
 {
-    $access = $_SESSION["auth"];
-
-    if($access != "admin"){
+    if ($_SESSION['auth'] == "admin"){
         //Admin access is good, page will load as normal
     }
-    else if($access != "user"){
+    else if ($_SESSION['auth'] == "user"){
         header("Location: ../home.php?error=1");
     }
     else{
@@ -16,6 +14,6 @@ if(isset($_SESSION["auth"]))
     }
 }
 else{
-    header("Location: ../index.php?error=1");
+    header("Location: ../../index.php?error=1");
 }
 ?>

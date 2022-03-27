@@ -44,18 +44,19 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="#">View Participants</a></li>
-                <li><a class="dropdown-item" href="#">Manage Users</a></li>
-                <li><a class="dropdown-item" href="#">Manage Courses</a></li>
+                <li><a class="dropdown-item" href="admin/users.php">Manage Users</a></li>
+                <li><a class="dropdown-item" href="admin/courses.php">Manage Courses</a></li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../php/_logout.php">Log Out</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <li class="nav-item">
-              <a class="nav-link" href="../php/_logout.php">Log Out</a>
-            </li>
+
 
 
     <h1>This is a home page</h1>
