@@ -1,0 +1,61 @@
+body{
+    font-family: 'Poppins', sans-serif
+  }
+  
+  .tableWrap{
+      display: block;
+      width:100%;
+      margin-top:50px;
+  }
+  
+  .usersTable {
+      border-collapse: collapse;
+      width: 90%;
+      max-width:1000px;
+      margin:auto;
+      border-radius: 5px;
+    }
+    
+    .usersTable td, .usersTable th {
+      padding: 6px;
+    }
+    
+    .usersTable tr:nth-child(even){background-color: #f7f7f7;}
+    
+    .usersTable tr:hover {background-color: #ddd;}
+  
+    .usersTable tr{
+        text-align: center;
+    }
+    
+    .usersTable th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+  
+  .deleteUserButton{
+      width:100%;
+      max-width:100px;
+      background-color: rgb(207, 30, 30);
+      border: none;
+      color: white;
+      padding: 15px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+  }
+  
+  .swal2-content{
+    font-family: 'Poppins', sans-serif
+  }
+  
+  label {
+    font-family: 'Poppins', sans-serif
+  }

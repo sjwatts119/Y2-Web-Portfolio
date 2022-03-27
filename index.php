@@ -29,12 +29,6 @@
         <div class="canvas-edit">
             <canvas></canvas>
         </div>
-        
-            <div class="animated-elements animated-reversed" id="squarefly-1"></div>
-            <div class="animated-elements animated-forward" id="squarefly-2"></div>
-            <div class="animated-elements animated-reversed" id="squarefly-3"></div>
-            <div class="animated-elements animated-forward" id="squarefly-4"></div>
-            <div class="animated-elements animated-reversed" id="squarefly-5"></div>
 
             <div class="form-login">
               <form class="loginForm" method="POST" name="login_form">
