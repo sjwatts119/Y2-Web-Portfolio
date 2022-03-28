@@ -106,7 +106,6 @@ Modal.addEventListener('show.bs.modal', function (event) {
   var firstName = button.getAttribute('data-bs-firstName');
   var lastName = button.getAttribute('data-bs-lastName');
   var email = button.getAttribute('data-bs-email');
-  var targetid = button.getAttribute('data-bs-email');
   var targetid = button.getAttribute('id');
   //Assign modal fields to variable for assignment later
   var modalTitle = Modal.querySelector('.modal-title')
