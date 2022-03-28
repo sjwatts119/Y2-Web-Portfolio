@@ -85,6 +85,7 @@
                 <option value="user">User Account</option>
               </select>
               <input type="hidden" name="token" value="<?php echo uniqid()?>">
+              <input type="hidden" class="targetid" name="targetid" value="">
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="formButton" id="btnSubmit" class="btn btn-primary" type="submit">Submit</button>

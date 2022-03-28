@@ -57,12 +57,12 @@ $('#userModal').on('submit', function (e) {
             var Modal = document.getElementById('Modal');
             var modalTitle = Modal.querySelector('.modal-title').textContent;
             console.log(modalTitle);
-            console.log($( "#userModal" ).serialize() + "&title="+ modalTitle);
+            console.log($( "#userModal" ).serialize() + "&title="+ modalTitle + "&UID="+ id);
 
             $.ajax({
                 type: "POST",
                 url: "../../php/change_users.php",
-                data: $( "#userModal" ).serialize() + "&title="+ modalTitle,
+                data: $( "#userModal" ).serialize() + "&title="+ modalTitle + "&UID="+ id,
                 success: function() {
                     $(thisObject).parent().parent().remove();
                     Swal.fire("Success", "User has been updated.", "success");
@@ -84,11 +84,14 @@ Modal.addEventListener('show.bs.modal', function (event) {
   var firstName = button.getAttribute('data-bs-firstName');
   var lastName = button.getAttribute('data-bs-lastName');
   var email = button.getAttribute('data-bs-email');
+  var targetid = button.getAttribute('data-bs-email');
+  var targetid = button.getAttribute('id');
   //Assign modal fields to variable for assignment later
   var modalTitle = Modal.querySelector('.modal-title')
   var modalFirstName = Modal.querySelector('.fName')
   var modalLastName = Modal.querySelector('.lName')
   var modalEmail = Modal.querySelector('.email')
+  var modalTargetID = Modal.querySelector('.targetid')
   //update title of Modal with name of user
   if (firstName == null){
     modalTitle.textContent = 'New User'
@@ -100,6 +103,7 @@ Modal.addEventListener('show.bs.modal', function (event) {
   modalFirstName.value = firstName
   modalLastName.value = lastName
   modalEmail.value = email
+  modalTargetID.value = targetid
 })
 
 

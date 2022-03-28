@@ -5,9 +5,29 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
     $secretKey = '6LdSkBQfAAAAANbjGoWfyGFE_O5LnC_l8ke7sIdH';
     $reCAPTCHA = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha)));
 
+    //Iterate the attempts session variable and if it is 3 or above, prevent login.
+    if (isset($_SESSION['attempts']))
+    {
+        $attempts = $_SESSION['attempts'];
+    }
+    else
+    {
+        $attempts = 0;
+    }
+
+    if ($attempts >= 3)
+    {
+        die("Too many attempts!");
+    }
+
+    $attempts++;
+
+    $_SESSION['attempts'] = $attempts;
+
+
     if ($reCAPTCHA->success == true && $reCAPTCHA->score >= 0.5)
     {
-            //If the username and password are present, move on to checking creds against the database.
+            //If the username and password are present, and if recaptcha score is high enough, move on to checking creds against the database.
             include_once("_connect.php");
             $email = mysqli_real_escape_string($db_connect,$_POST["email"]);
             $password = mysqli_real_escape_string($db_connect,$_POST["password"]);
@@ -50,8 +70,6 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
         //if recaptcha score is too low
         echo "error3";
     }
-
-    
 }
 else
 {
