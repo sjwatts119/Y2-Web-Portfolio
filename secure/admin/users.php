@@ -96,68 +96,6 @@
       </div>
     </div>
 
-    <!--<div id="newUserModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form class="formBody" method="POST" action="../php/new_user.php" name="add_user">
-
-          <label for="fname">First Name:</label>
-          <input type="text" name="fname" id="fname" required>
-
-          <label for="lname">Last Name:</label>
-          <input type="text" name="lname" id="lname" required>
-
-          <label for="email">Email:</label>
-          <input type="email" name="email" id="email" required>
-
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" required>
-
-          <label for="access">Access Level:</label>
-          <select name="access" id="access" required>
-          <option value="" selected>Please select...</option>
-          <option value="admin">Admin Account</option>
-          <option value="user">User Account</option>
-          </select>
-
-          <input type="hidden" name="token" value="<?php echo uniqid()?>">
-
-          <button class="formButton" type="submit">Add User</button>
-        </form>
-    </div>
-  </div>
-
-  <div id="existingUserModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form class="formBody" method="POST" action="../php/update_user.php" name="update_user">
-
-          <label for="fname">First Name:</label>
-          <input type="text" name="fname" id="fname" required>
-
-          <label for="lname">Last Name:</label>
-          <input type="text" name="lname" id="lname" required>
-
-          <label for="email">Email:</label>
-          <input type="email" name="email" id="email" required>
-
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" required>
-
-          <label for="access">Access Level:</label>
-          <select name="access" id="access" required>
-          <option value="" selected>Please select...</option>
-          <option value="admin">Admin Account</option>
-          <option value="user">User Account</option>
-          </select>
-
-          <input type="hidden" name="token" value="<?php echo uniqid()?>">
-
-          <button class="formButton" type="submit">Add User</button>
-        </form>
-    </div>
-  </div>-->
-
   <div class="tableWrap"> <?php include "../../php/retrieve_users.php"?> </div>
   
 </body>

@@ -31,7 +31,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         if ($field === key($row)){
 
             //adds button to end of table with ID the same as the current UID of the row for the user
-            echo "<td>" . "<button class='deleteUserButton' id='" . "$UIDValue" . "'>Delete</button" . "</td>";
+            echo "<td>" . "<button class='deleteUserButton btn btn-danger' id='" . "$UIDValue" . "'>Delete</button" . "</td>";
             //adds button to end of table with ID the same as the current UID of the row for the user
             echo "<td>" . "<button type ='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal' data-bs-firstname='". $row["firstName"] . "' data-bs-lastname='". $row["lastName"] . "' data-bs-email='". $row["email"] . "'id='" . "$UIDValue" . "'>Update</button>" . "</td>";
         }

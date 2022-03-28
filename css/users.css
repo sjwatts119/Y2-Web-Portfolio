@@ -36,22 +36,6 @@ body{
       color: white;
     }
   
-  .deleteUserButton{
-      width:100%;
-      max-width:100px;
-      background-color: rgb(207, 30, 30);
-      border: none;
-      color: white;
-      padding: 15px 15px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 5px;
-  }
-  
   .swal2-content{
     font-family: 'Poppins', sans-serif
   }
