@@ -64,23 +64,23 @@
             <form id="userModal" method="POST">
               <div class="mb-3">
                 <label for="fName" class="col-form-label">First Name:</label>
-                <input type="text" name="fName" class="form-control fName" id="fName">
+                <input type="text" name="fName" class="form-control fName" id="fName" required>
               </div>
               <div class="mb-3">
                 <label for="lName" class="col-form-label">Last Name:</label>
-                <input type="text" name ="lName" class="form-control lName" id="lName">
+                <input type="text" name ="lName" class="form-control lName" id="lName" required>
               </div>
               <div class="mb-3">
                 <label for="email" class="col-form-label">Email:</label>
-                <input type="text" name ="email" class="form-control email" id="email">
+                <input type="text" name ="email" class="form-control email" id="email" required>
               </div>
               <div class="mb-3">
                 <label for="password" class="col-form-label">Password:</label>
-                <input type="password" name ="password" class="form-control" id="password">
+                <input type="password" name ="password" class="form-control" id="password" required>
               </div>
               <label for="access">Access Level:</label>
-              <select name="access" id="access" class="form-select access" aria-label="Default select">
-                <option value="" selected>Please select...</option>
+              <select name="access" id="access" class="form-select access" aria-label="Default select" required>
+                <option hidden disabled selected value>Please select...</option>
                 <option value="admin">Admin Account</option>
                 <option value="user">User Account</option>
               </select>

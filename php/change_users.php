@@ -33,12 +33,25 @@
                 
                 //Prepares the SQL statement for execution.
                 $stmt->bind_param("sssss", $email, $fname, $lname, $password, $access);
-                
-                //Executes the prepared query.
-                $stmt->execute();
-                
-                //Closes the prepared statement.
-                mysqli_stmt_close($stmt);
+
+                if($stmt->execute()){
+                    $arr = array();
+                    $arr[0] = $targetID;
+                    $arr[1] = $email;
+                    $arr[2] = $fname;
+                    $arr[3] = $lname;
+                    $arr[4] = $access;
+                    //returning true shows that this is creating a new user
+                    $arr[5] = true;
+
+                    echo json_encode($arr);
+
+                    //Closes the prepared statement.
+                    mysqli_stmt_close($stmt);
+                }
+                else{
+                    die(mysqli_error($connect));
+                }
         }
         //Runs if the modal is for an existing 
         else{
@@ -50,7 +63,16 @@
                 
                 //Executes the prepared query.
                 if($stmt->execute()){
-                    echo "User has been Updated";
+                    $arr = array();
+                    $arr[0] = $targetID;
+                    $arr[1] = $email;
+                    $arr[2] = $fname;
+                    $arr[3] = $lname;
+                    $arr[4] = $access;
+                    //returning false shows that this is updating an existing user, not creating a new one.
+                    $arr[5] = false;
+
+                    echo json_encode($arr);
                 }
                 else{
                     die(mysqli_error($connect));

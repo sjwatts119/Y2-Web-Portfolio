@@ -56,16 +56,37 @@ $('#userModal').on('submit', function (e) {
             var id = this.id;
             var Modal = document.getElementById('Modal');
             var modalTitle = Modal.querySelector('.modal-title').textContent;
-            console.log(modalTitle);
-            console.log($( "#userModal" ).serialize() + "&title="+ modalTitle + "&UID="+ id);
+            var form = $( "#userModal" ).serialize();
 
             $.ajax({
                 type: "POST",
                 url: "../../php/change_users.php",
-                data: $( "#userModal" ).serialize() + "&title="+ modalTitle + "&UID="+ id,
-                success: function() {
-                    $(thisObject).parent().parent().remove();
+                data: $( "#userModal" ).serialize() + "&title="+ modalTitle,
+                dataType: "json",
+                success: function(data) {
+                  //runs if a new user has been created
+                  if (data[5] === true){
+                    Swal.fire("Success", "User has been created.", "success");
+                    //assigns users table to variable table
+                    //reloads for now to show new user in table.
+                    location.reload();
+                  }
+                  //runs if an existing user has been modified/updated
+                  else if (data[5] === false){
                     Swal.fire("Success", "User has been updated.", "success");
+                    //getting ID of table row element that is related to this specific user
+                    var rowName = "row" + data[0];
+                    //updating form email field with ajax
+                    var parentRow = document.getElementById(rowName);
+                    //updating email table field with returned new email
+                    parentRow.children[1].textContent = data[1];
+                    //updating first name table field with returned new first name
+                    parentRow.children[2].textContent = data[2];
+                    //updating last name table field with returned new last name
+                    parentRow.children[3].textContent = data[3];
+                    //updating access level table field with returned new access level
+                    parentRow.children[4].textContent = data[4];
+                  }
 
                 },
                 error: function() {
