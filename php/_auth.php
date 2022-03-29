@@ -1,6 +1,7 @@
 <?php
 if(isset($_POST["email"]) or isset($_POST["password"]))
 {
+    session_start();
     $captcha = $_POST['token'];
     $secretKey = '6LdSkBQfAAAAANbjGoWfyGFE_O5LnC_l8ke7sIdH';
     $reCAPTCHA = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha)));
@@ -17,8 +18,9 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
 
     if ($attempts >= 3)
     {
-        die("Too many attempts!");
+        echo "error4";
     }
+    else{
 
     $attempts++;
 
@@ -51,8 +53,7 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
                 //If user account matching email is found
                 $result = mysqli_fetch_assoc($run);
                 if (password_verify($password, $result["password"])){
-    
-                    session_start();
+
                     $_SESSION["auth"] = $result["access"];
                     echo "true";
                 }
@@ -70,6 +71,7 @@ if(isset($_POST["email"]) or isset($_POST["password"]))
         //if recaptcha score is too low
         echo "error3";
     }
+}
 }
 else
 {
