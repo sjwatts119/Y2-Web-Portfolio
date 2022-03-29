@@ -1,8 +1,8 @@
 <?php
-    if(isset($_POST["courseID"]))
+    if(isset($_POST["CID"]))
     {
         include_once("_connect.php");
-        $CID = $_POST["courseID"];
+        $CID = $_POST["CID"];
 
         $query = "DELETE FROM courses WHERE courseID = $CID;";
 

@@ -1,27 +1,29 @@
 <?php
 
-$UIDValue = 1;
+$CIDValue = 1;
 
 require_once("_connect.php");
 
-$sql = "SELECT userID, email, firstName, lastName, access FROM users";
+$sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses";
 $result = mysqli_query($db_connect, $sql); 
 echo "<br>";
-echo "<table class='usersTable'>";
-echo "<td>" . "<div class='tableHeader'>User ID</div>" . "</td>";
-echo "<td>" . "<div class='tableHeader'>Email</div>" . "</td>";
-echo "<td>" . "<div class='tableHeader'>First Name</div>" . "</td>";
-echo "<td>" . "<div class='tableHeader'>Last Name</div>" . "</td>";
-echo "<td>" . "<div class='tableHeader'>Access Level</div>" . "</td>";
-echo "<td>" . "<div class='tableHeader'>Delete User</div>" . "</td>";
+echo "<table id='coursesTable' class='coursesTable'>";
+echo "<td>" . "<div class='tableHeader'>Course ID</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Course Name</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Course Date</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Course Duration</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Max Attendees</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Course Description</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Delete Course</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Update Course</div>" . "</td>";
 
 while ($row = mysqli_fetch_assoc($result)) {
-    echo "<tr>";
+    echo "<tr id=row" . $row["courseID"] . ">";
     foreach ($row as $field => $value) {
 
         //finds value of UID for usage on the button ID
         reset($row);
-        if ($field === key($row)){$UIDValue = $value;}
+        if ($field === key($row)){$CIDValue = $value;}
 
         //Inputs the current field into the table
         echo "<td>" . $value . "</td>"; 
@@ -30,10 +32,10 @@ while ($row = mysqli_fetch_assoc($result)) {
         end($row);
         if ($field === key($row)){
 
-            //adds button to end of table with ID the same as the current UID of the row for the user
-            echo "<td>" . "<button class='deleteUserButton' id='" . "$UIDValue" . "'>Delete</button" . "</td>";
-            //adds button to end of table with ID the same as the current UID of the row for the user
-            echo "<td>" . "<button type ='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal' data-bs-firstname='". $row["firstName"] . "' data-bs-lastname='". $row["lastName"] . "' data-bs-email='". $row["email"] . "'id='" . "$UIDValue" . "'>Update</button" . "</td>";
+            //adds button to end of table with ID the same as the current UID of the row for the course
+            echo "<td>" . "<button class='deleteCourseButton btn btn-danger' id='" . "$CIDValue" . "'>Delete</button" . "</td>";
+            //adds button to end of table with ID the same as the current UID of the row for the course
+            echo "<td>" . "<button type ='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal' data-bs-coursename='". $row["courseTitle"] . "' data-bs-coursedate='". $row["courseDate"] . "' data-bs-courseduration='". $row["courseDuration"] . "' data-bs-maxattendees='". $row["maxAttendees"] . "' data-bs-coursedescription='". $row["courseDescription"] . "'id='" . "$CIDValue" . "'>Update</button>" . "</td>";
         }
     }
     echo "</tr>";

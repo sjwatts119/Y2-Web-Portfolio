@@ -78,6 +78,10 @@
                 <label for="password" class="col-form-label">Password:</label>
                 <input type="password" name ="password" class="form-control" id="password" required>
               </div>
+              <div class="mb-3">
+                <label for="jobTitle" class="col-form-label">Job Title:</label>
+                <input type="text" name ="jobTitle" class="form-control jobTitle" id="jobTitle" required>
+              </div>
               <label for="access">Access Level:</label>
               <select name="access" id="access" class="form-select access" aria-label="Default select" required>
                 <option hidden disabled selected value>Please select...</option>

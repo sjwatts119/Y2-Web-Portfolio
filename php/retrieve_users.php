@@ -4,7 +4,7 @@ $UIDValue = 1;
 
 require_once("_connect.php");
 
-$sql = "SELECT userID, email, firstName, lastName, access FROM users";
+$sql = "SELECT userID, email, firstName, lastName, jobTitle, access FROM users";
 $result = mysqli_query($db_connect, $sql); 
 echo "<br>";
 echo "<table id='usersTable' class='usersTable'>";
@@ -12,8 +12,10 @@ echo "<td>" . "<div class='tableHeader'>User ID</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>Email</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>First Name</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>Last Name</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Job Title</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>Access Level</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>Delete User</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Update User</div>" . "</td>";
 
 while ($row = mysqli_fetch_assoc($result)) {
     echo "<tr id=row" . $row["userID"] . ">";
@@ -33,7 +35,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             //adds button to end of table with ID the same as the current UID of the row for the user
             echo "<td>" . "<button class='deleteUserButton btn btn-danger' id='" . "$UIDValue" . "'>Delete</button" . "</td>";
             //adds button to end of table with ID the same as the current UID of the row for the user
-            echo "<td>" . "<button type ='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal' data-bs-firstname='". $row["firstName"] . "' data-bs-lastname='". $row["lastName"] . "' data-bs-email='". $row["email"] . "'id='" . "$UIDValue" . "'>Update</button>" . "</td>";
+            echo "<td>" . "<button type ='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal' data-bs-firstname='". $row["firstName"] . "' data-bs-lastname='". $row["lastName"] . "' data-bs-email='". $row["email"] . "' data-bs-jobtitle='". $row["jobTitle"] . "'id='" . "$UIDValue" . "'>Update</button>" . "</td>";
         }
     }
     echo "</tr>";

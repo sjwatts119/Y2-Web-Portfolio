@@ -2,7 +2,7 @@
     session_start();
 
     if($_SESSION['auth'] != "admin"){
-        header("Location: /php/index.php");
+        header("Location: ./index.php");
     }
     if(empty($_POST)){
         die("Missing POST Values");
@@ -18,8 +18,9 @@
         $lname = mysqli_real_escape_string($db_connect,$_POST["lName"]);
         
         $email = mysqli_real_escape_string($db_connect,$_POST["email"]);
+        $jobTitle = mysqli_real_escape_string($db_connect,$_POST["jobTitle"]);
+
         $password = mysqli_real_escape_string($db_connect,$_POST["password"]);
-        
         $password = password_hash($password, PASSWORD_DEFAULT);
         
         $access = mysqli_real_escape_string($db_connect,$_POST["access"]);
@@ -29,10 +30,10 @@
         if($_POST['title'] == 'New User'){
 
                 //The SQL statement
-                $stmt = $db_connect->prepare("INSERT INTO `users` (`userID`, `email`, `firstName`, `lastName`, `password`, `access`, `TIMESTAMP`) VALUES (NULL, ?, ?, ?, ?, ?, current_timestamp())");
+                $stmt = $db_connect->prepare("INSERT INTO `users` (`userID`, `email`, `firstName`, `lastName`, `password`, `jobTitle`, `access`, `TIMESTAMP`) VALUES (NULL, ?, ?, ?, ?, ?, ?, current_timestamp())");
                 
                 //Prepares the SQL statement for execution.
-                $stmt->bind_param("sssss", $email, $fname, $lname, $password, $access);
+                $stmt->bind_param("ssssss", $email, $fname, $lname, $password, $jobTitle, $access);
 
                 if($stmt->execute()){
                     $arr = array();
@@ -41,6 +42,7 @@
                     $arr[2] = $fname;
                     $arr[3] = $lname;
                     $arr[4] = $access;
+                    $arr[6] = $jobTitle;
                     //returning true shows that this is creating a new user
                     $arr[5] = true;
 
@@ -53,13 +55,13 @@
                     die(mysqli_error($connect));
                 }
         }
-        //Runs if the modal is for an existing 
+        //Runs if the modal is for an existing user
         else{
                 //The SQL statement
-                $query = "UPDATE `users` SET `email`=?, `firstName`=?,`lastName`=?,`password`=?,`access`=?,`TIMESTAMP`=current_timestamp() WHERE `userID`=?";
+                $query = "UPDATE `users` SET `email`=?, `firstName`=?,`lastName`=?,`password`=?,`jobTitle`=?,`access`=?,`TIMESTAMP`=current_timestamp() WHERE `userID`=?";
                 $stmt = $db_connect->prepare($query);
                 //Prepares the SQL statement for execution.
-                $stmt->bind_param('sssssi', $email, $fname, $lname, $password, $access, $targetID);
+                $stmt->bind_param('ssssssi', $email, $fname, $lname, $password, $jobTitle, $access, $targetID);
                 
                 //Executes the prepared query.
                 if($stmt->execute()){
@@ -69,6 +71,7 @@
                     $arr[2] = $fname;
                     $arr[3] = $lname;
                     $arr[4] = $access;
+                    $arr[6] = $jobTitle;
                     //returning false shows that this is updating an existing user, not creating a new one.
                     $arr[5] = false;
 

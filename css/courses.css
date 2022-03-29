@@ -1,0 +1,45 @@
+body{
+    font-family: 'Poppins', sans-serif
+  }
+  
+  .tableWrap{
+      display: block;
+      width:100%;
+      margin-top:50px;
+  }
+  
+  .coursesTable {
+      border-collapse: collapse;
+      width: 90%;
+      max-width:1000px;
+      margin:auto;
+      border-radius: 5px;
+    }
+    
+    .coursesTable td, .coursesTable th {
+      padding: 6px;
+    }
+    
+    .coursesTable tr:nth-child(even){background-color: #f7f7f7;}
+    
+    .coursesTable tr:hover {background-color: #ddd;}
+  
+    .coursesTable tr{
+        text-align: center;
+    }
+    
+    .coursesTable th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+  
+  .swal2-content{
+    font-family: 'Poppins', sans-serif
+  }
+  
+  label {
+    font-family: 'Poppins', sans-serif
+  }

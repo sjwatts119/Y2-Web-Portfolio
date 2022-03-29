@@ -2,7 +2,7 @@ document.getElementById("1").disabled = true;
 document.getElementById("1").style.backgroundColor = "DarkGrey";
 document.getElementById("1").style.borderColor = "DarkGrey";
 
-$('.deleteUserButton').click(function() {
+$('.deleteCourseButton').click(function() {
 
   Swal.fire({
       title: 'Are you sure?',
@@ -20,9 +20,9 @@ $('.deleteUserButton').click(function() {
 
           $.ajax({
               type: "POST",
-              url: "../../php/delete_user.php",
+              url: "../../php/delete_course.php",
               data: {
-                  UID: id
+                  CID: id
               },
               success: function() {
                   $(thisObject).parent().parent().remove();
@@ -37,7 +37,7 @@ $('.deleteUserButton').click(function() {
   })  
 });
 
-$('#userModal').on('submit', function (e) {
+$('#courseModal').on('submit', function (e) {
 
   e.preventDefault();
 
@@ -57,12 +57,12 @@ $('#userModal').on('submit', function (e) {
             var id = this.id;
             var Modal = document.getElementById('Modal');
             var modalTitle = Modal.querySelector('.modal-title').textContent;
-            var form = $( "#userModal" ).serialize();
+            var form = $( "#courseModal" ).serialize();
 
             $.ajax({
                 type: "POST",
-                url: "../../php/change_users.php",
-                data: $( "#userModal" ).serialize() + "&title="+ modalTitle,
+                url: "../../php/change_courses.php",
+                data: $( "#courseModal" ).serialize() + "&title="+ modalTitle,
                 dataType: "json",
                 success: function(data) {
                   //runs if a new user has been created
@@ -103,34 +103,36 @@ $('#userModal').on('submit', function (e) {
 var Modal = document.getElementById('Modal')
 Modal.addEventListener('show.bs.modal', function (event) {
   // Assign button that triggered model to variable to access its attributes
-  var button = event.relatedTarget
+  var button = event.relatedTarget;
   // Retrieve information from button that triggered modal
-  var firstName = button.getAttribute('data-bs-firstName');
-  var lastName = button.getAttribute('data-bs-lastName');
-  var email = button.getAttribute('data-bs-email');
-  var jobTitle = button.getAttribute('data-bs-jobtitle');
+  var courseName = button.getAttribute('data-bs-coursename');
+  var courseDate = button.getAttribute('data-bs-coursedate');
+  var courseDuration = button.getAttribute('data-bs-courseduration');
+  var maxAttendees = button.getAttribute('data-bs-maxattendees');
+  var courseDescription = button.getAttribute('data-bs-coursedescription');
   var targetid = button.getAttribute('id');
   //Assign modal fields to variable for assignment later
-  var modalTitle = Modal.querySelector('.modal-title')
-  var modalFirstName = Modal.querySelector('.fName')
-  var modalLastName = Modal.querySelector('.lName')
-  var modalJobTitle = Modal.querySelector('.jobTitle')
-  var modalEmail = Modal.querySelector('.email')
-  var modalTargetID = Modal.querySelector('.targetid')
+  var modalTitle = Modal.querySelector('.modal-title');
+  var modalName = Modal.querySelector('.courseName');
+  var modalDate = Modal.querySelector('.courseDate');
+  var modalDuration = Modal.querySelector('.courseDuration');
+  var modalAttendees = Modal.querySelector('.maxAttendees');
+  var modalCourseDescription = Modal.querySelector('.courseDescription');
+  var modalTargetID = Modal.querySelector('.targetid');
   //update title of Modal with name of user
-  if (firstName == null){
-    modalTitle.textContent = 'New User'
+  if (courseName == null){
+    modalTitle.textContent = 'New Course';
   }else{
-    modalTitle.textContent = 'Updating user: ' + firstName
+    modalTitle.textContent = 'Updating course: ' + courseName;
   }
 
   //Change values of modal with data pulled from the button
-  modalFirstName.value = firstName
-  modalLastName.value = lastName
-  modalJobTitle.value = jobTitle
-  modalEmail.value = email
+  modalName.value = courseName;
+  modalDate.value = courseDate;
+  modalDuration.value = courseDuration;
+  modalAttendees.value = maxAttendees;
+  modalCourseDescription.value = courseDescription;
   modalTargetID.value = targetid
-
 })
 
 
