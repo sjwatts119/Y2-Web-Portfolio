@@ -15,6 +15,9 @@ function loginError(sErrorType){
     else if (sErrorType == "error3"){
         $("#errorCaptcha").show();
     }
+    else if (sErrorType == "error4"){
+        $("#errorAttempts").show();
+    }
     //for anything else, show an alert that an error has occurred (This shouldn't be able to run but is there for redundancy)
     else{
         alert("An error has occurred");

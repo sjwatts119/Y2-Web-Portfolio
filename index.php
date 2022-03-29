@@ -43,6 +43,7 @@
                 <div class="loginError" id="errorEmail" style="display:none;">Email Address not Found</div>
                 <div class="loginError" id="errorPassword" style="display:none;">Your password is Incorrect</div>
                 <div class="loginError" id="errorCaptcha" style="display:none;">reCaptcha score is Too Low.</div>
+                <div class="loginError" id="errorAttempts" style="display:none;">Too Many Attempts, Please try again Later.</div>
                 <div class="loginError"><?php echo $errorMessageAuth; ?></div>
         
                 <button class="formButton" id="submitForm" type="submit">Login</button>
