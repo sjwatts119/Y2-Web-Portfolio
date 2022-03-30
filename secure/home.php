@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
   <meta charset="utf-8">
   <title>Home</title>
   <!-- Link BootStrap CSS Stylesheet from CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <!-- Link Main CSS Stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/home.css">
   <!-- Anime.JS Animations Library -->
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
   <!-- Google Fonts --> 
@@ -39,7 +39,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="#">View Participants</a></li>
                 <li><a class="dropdown-item" href="admin/users.php">Manage Users</a></li>
-                <li><a class="dropdown-item" href="admin/courses.php">Manage Courses</a></li>
+                <li><a class="dropdown-item" href="admin/enrolments.php">Manage enrolments</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -50,39 +50,50 @@
       </div>
     </nav>
 
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-    <h1>This is a home page</h1>
-</body>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal" data-bs-title="Enrol">Enrol</button>
+
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabel">Enrolment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="enrolmentModal" method="POST">
+              <div class="mb-3">
+                <label for="enrolmentName" class="col-form-label">Enrolment Name:</label>
+                <input type="text" name="enrolmentName" class="form-control enrolmentName" id="enrolmentName" required>
+              </div>
+              <div class="mb-3">
+                <label for="enrolmentDate" class="col-form-label">enrolment Date:</label>
+                <input type="date" name ="enrolmentDate" class="form-control enrolmentDate" id="enrolmentDate" required>
+              </div>
+              <div class="mb-3">
+                <label for="enrolmentDuration" class="col-form-label">enrolment Duration (Weeks):</label>
+                <input type="text" name ="enrolmentDuration" class="form-control enrolmentDuration" id="enrolmentDuration" required>
+              </div>
+              <div class="mb-3">
+                <label for="maxAttendees" class="col-form-label">Maximum Attendees:</label>
+                <input type="text" name ="maxAttendees" class="form-control maxAttendees" id="maxAttendees" required>
+              </div>
+              <div class="mb-3">
+                <label for="enrolmentDescription" class="col-form-label">enrolment Description:</label>
+                <textarea class="form-control enrolmentDescription" name ="enrolmentDescription" id="enrolmentDescription" rows="3" required></textarea>
+              </div>
+              <input type="hidden" name="token" value="<?php echo uniqid()?>">
+              <input type="hidden" class="targetid" name="targetid" value="">
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="formButton" id="btnSubmit" class="btn btn-primary" type="submit">Submit</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tableWrap"> <?php include "../php/retrieve_enrolments.php"?> </div>
     
 </body>
 </html>

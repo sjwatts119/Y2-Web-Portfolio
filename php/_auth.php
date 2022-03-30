@@ -56,6 +56,7 @@ else{
                     if (password_verify($password, $result["password"])){
 
                         $_SESSION["auth"] = $result["access"];
+                        $_SESSION["userID"] = $result["userID"];
                         echo "true";
                     }
                     else{
