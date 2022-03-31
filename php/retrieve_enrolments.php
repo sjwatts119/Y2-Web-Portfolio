@@ -1,11 +1,10 @@
 <?php
 
 $CIDValue = 1;
+$iteration = 1;
+$
 
 require_once("_connect.php");
-
-$sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses";
-$courses = mysqli_query($db_connect, $sql);
 
 $sql = "SELECT userID, email, firstName, lastName, jobTitle, access FROM users";
 $coursesForTotal = mysqli_query($db_connect, $sql); 
@@ -21,10 +20,35 @@ echo "<td>" . "<div class='tableHeader'>Current Attendees</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>Leave Course</div>" . "</td>";
 
 while ($row = mysqli_fetch_assoc($enrolments)) {
-    echo "<tr id=row" . $row["courseID"] . ">";
+
+    $sql = "SELECT courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses WHERE courseID=1";
+    $courses = mysqli_query($db_connect, $sql);
+    $courses = $courses->fetch_assoc();
+
+    echo "<tr id=row" . $courses["courseTitle"] . ">";
+
     foreach ($row as $field => $value) {
-    //Inputs the current field into the table
-    echo "<td>" . $value . "</td>"; 
+
+        if($iteration == 1){
+            //Inputs the current field into the table
+            echo "<td>" . $courses["courseTitle"] . "</td>"; 
+            $iteration++;
+        }
+        else if($iteration == 2){
+            echo "<td>" . $courses["courseDate"] . "</td>";
+            $iteration++;
+        }
+        else if($iteration == 3){
+            echo "<td>" . $courses["courseDate"] . "</td>";
+            $iteration++;
+        }
+        else if($iteration == 4){
+
+        }
+
+
+        
+
 
     end($row);
         if ($field === key($row)){

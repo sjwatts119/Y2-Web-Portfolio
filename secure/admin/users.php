@@ -72,7 +72,7 @@
               </div>
               <div class="mb-3">
                 <label for="email" class="col-form-label">Email:</label>
-                <input type="text" name ="email" class="form-control email" id="email" required>
+                <input type="email" name ="email" class="form-control email" id="email" required>
               </div>
               <div class="mb-3">
                 <label for="password" class="col-form-label">Password:</label>
