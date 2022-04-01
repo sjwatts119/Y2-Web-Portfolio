@@ -16,9 +16,9 @@ $('.cancelEnrolmentButton').click(function() {
 
           $.ajax({
               type: "POST",
-              url: "../../php/delete_enrolment.php",
+              url: "../php/delete_enrolment.php",
               data: {
-                  UID: id
+                  enrolmentID: id
               },
               success: function() {
                   $(thisObject).parent().parent().remove();
