@@ -2,7 +2,6 @@
 
 $CIDValue = 1;
 $iteration = 1;
-$
 
 require_once("_connect.php");
 
@@ -21,7 +20,7 @@ echo "<td>" . "<div class='tableHeader'>Leave Course</div>" . "</td>";
 
 while ($row = mysqli_fetch_assoc($enrolments)) {
 
-    $sql = "SELECT courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses WHERE courseID=1";
+    $sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses WHERE courseID=" . $_SESSION["userID"];
     $courses = mysqli_query($db_connect, $sql);
     $courses = $courses->fetch_assoc();
 
@@ -39,15 +38,13 @@ while ($row = mysqli_fetch_assoc($enrolments)) {
             $iteration++;
         }
         else if($iteration == 3){
-            echo "<td>" . $courses["courseDate"] . "</td>";
-            $iteration++;
+            $sql = "SELECT enrolmentID FROM enrolments WHERE courseID=" . $courses["courseID"];
+            $enrolmentTotal = mysqli_query($db_connect, $sql);
+            $enrolmentTotal = mysqli_num_rows($enrolmentTotal);
+
+            echo "<td>" . $enrolmentTotal . "</td>";
+            $iteration = 1;
         }
-        else if($iteration == 4){
-
-        }
-
-
-        
 
 
     end($row);
