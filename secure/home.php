@@ -94,6 +94,7 @@
     </div>
 
     <div class="tableWrap"> <?php include "../php/retrieve_enrolments.php"?> </div>
+    <div class="tableWrap"> <?php include "../php/retrieve_non_enrolled.php"?> </div>
     
 </body>
 </html>
