@@ -43,3 +43,7 @@ body{
 label {
   font-family: 'Poppins', sans-serif
 }
+
+.card{
+  width:18rem;
+}
