@@ -1,8 +1,4 @@
-document.getElementById("1").disabled = true;
-document.getElementById("1").style.backgroundColor = "DarkGrey";
-document.getElementById("1").style.borderColor = "DarkGrey";
-
-$('.deleteUserButton').click(function() {
+$('.cancelEnrolmentButton').click(function() {
 
   Swal.fire({
       title: 'Are you sure?',
@@ -11,7 +7,7 @@ $('.deleteUserButton').click(function() {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, Delete'
+      confirmButtonText: 'Yes, Cancel'
   }).then((result) => {
       if (result.isConfirmed) {
 
@@ -20,17 +16,17 @@ $('.deleteUserButton').click(function() {
 
           $.ajax({
               type: "POST",
-              url: "../../php/delete_user.php",
+              url: "../../php/delete_enrolment.php",
               data: {
                   UID: id
               },
               success: function() {
                   $(thisObject).parent().parent().remove();
-                  Swal.fire("Success", "User has been deleted.", "success");
+                  Swal.fire("Success", "Enrolment has been Cancelled", "success");
 
               },
               error: function() {
-                  Swal.fire("Error", "There was an error deleting the user.", "error");
+                  Swal.fire("Error", "There was an error Cancelling the Enrolment", "error");
               }
           });
     }
