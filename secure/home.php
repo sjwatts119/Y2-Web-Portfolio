@@ -93,8 +93,8 @@
       </div>
     </div>
 
-    <div class="tableWrap"> <?php include "../php/retrieve_enrolments.php"?> </div>
-    <div class="tableWrap"> <?php include "../php/retrieve_non_enrolled.php"?> </div>
+    <div class="tableWrap" id="enrolled"> <?php include "../php/retrieve_enrolments.php"?> </div>
+    <div class="tableWrap" id="non-enrolled"> <?php include "../php/retrieve_non_enrolled.php"?> </div>
     
 </body>
 </html>
@@ -106,10 +106,6 @@
 <!-- SWAL (Sweet Alerts) CDN LINK -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<script src="../js/scripts.js"></script>
-<script rel="preconnect" src="../js/preloader.js"></script>
-<script src="../js/add_enrolment_form.js"></script>
-
 <script>
 
 window.onbeforeunload = function () {
@@ -117,3 +113,8 @@ window.onbeforeunload = function () {
 }
 
 </script>
+
+<script src="../js/scripts.js"></script>
+<script rel="preconnect" src="../js/preloader.js"></script>
+<script src="../js/add_enrolment_form.js"></script>
+

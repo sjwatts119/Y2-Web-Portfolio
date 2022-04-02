@@ -11,7 +11,8 @@ $('.deleteUserButton').click(function() {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, Delete'
+      confirmButtonText: 'Yes, Delete',
+      reverseButtons: true
   }).then((result) => {
       if (result.isConfirmed) {
 
@@ -48,7 +49,8 @@ $('#userModal').on('submit', function (e) {
         showCancelButton: true,
         confirmButtonColor: 'green',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, Submit'
+        confirmButtonText: 'Yes, Submit',
+        reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
 

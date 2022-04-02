@@ -1,7 +1,3 @@
-document.getElementById("1").disabled = true;
-document.getElementById("1").style.backgroundColor = "DarkGrey";
-document.getElementById("1").style.borderColor = "DarkGrey";
-
 $('.deleteCourseButton').click(function() {
 
   Swal.fire({
@@ -11,7 +7,8 @@ $('.deleteCourseButton').click(function() {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, Delete'
+      confirmButtonText: 'Yes, Delete',
+      reverseButtons: true
   }).then((result) => {
       if (result.isConfirmed) {
 
@@ -48,7 +45,8 @@ $('#courseModal').on('submit', function (e) {
         showCancelButton: true,
         confirmButtonColor: 'green',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, Submit'
+        confirmButtonText: 'Yes, Submit',
+        reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
 

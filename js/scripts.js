@@ -1,4 +1,3 @@
-
 //this function will turn the rain off on mobile
     function rainMobile(xys) {
 
