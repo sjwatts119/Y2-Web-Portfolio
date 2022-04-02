@@ -48,6 +48,7 @@ while ($row = mysqli_fetch_assoc($enrolments)) {
 
             //adds button to end of table with ID the same as the current UID of the row for the course
             echo "<a href='#' class='cancelEnrolmentButton btn btn-danger' id='" . $row['enrolmentID'] . "'>Cancel</a>";
+            echo "<a href='#' class='moreInfoButton btn btn-secondary' id='" . $row["courseID"] . "'>View</a>";
         }
     }
     echo "</div>";
