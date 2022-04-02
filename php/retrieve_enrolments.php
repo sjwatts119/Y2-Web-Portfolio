@@ -2,6 +2,7 @@
 
 $CIDValue = 1;
 $iteration = 1;
+$arrayOfEnrolledCourses = [];
 
 require_once("_connect.php");
 
@@ -51,6 +52,8 @@ while ($row = mysqli_fetch_assoc($enrolments)) {
     }
     echo "</div>";
     echo "</div>";
+    array_push($arrayOfEnrolledCourses, $row["courseID"]);
 }
+$arrayOfEnrolledCourses = array_unique($arrayOfEnrolledCourses);
 
 ?>

@@ -1,17 +1,16 @@
 <?php
 
-$CIDValue = 1;
 $iteration = 1;
 
-require_once("_connect.php");
+$implodedArrayOfEnrolledCourses = implode( ',', $arrayOfEnrolledCourses);
 
-$sql = "SELECT userID, email, firstName, lastName, jobTitle, access FROM users";
-$coursesForTotal = mysqli_query($db_connect, $sql); 
-
-$sql = "SELECT enrolmentID, userID, courseID FROM enrolments WHERE userID !=" . $_SESSION['userID'];
+$sql = "SELECT enrolmentID, userID, courseID FROM enrolments WHERE userID =" . $_SESSION['userID'];
 $enrolments = mysqli_query($db_connect, $sql); 
 
-while ($row = mysqli_fetch_assoc($enrolments)) {
+$nonEnrolledCourses = "SELECT courseID, courseTitle, courseDate, maxAttendees FROM courses WHERE courseID NOT IN (" . $implodedArrayOfEnrolledCourses . ")";
+$nonEnrolled = mysqli_query($db_connect, $nonEnrolledCourses); 
+
+while ($row = mysqli_fetch_assoc($nonEnrolled)) {
 
     echo "<div id='card' class='card'>";
     echo "<div id='card-body' class='card-body'>";
@@ -20,7 +19,7 @@ while ($row = mysqli_fetch_assoc($enrolments)) {
     $courses = mysqli_query($db_connect, $sql);
     $courses = $courses->fetch_assoc();
 
-    foreach ($row as $field => $value) {
+    for ($iteration = 1; $iteration < 4; $iteration++) {
 
         if($iteration == 1){
             //Inputs the current field into the card
@@ -41,16 +40,13 @@ while ($row = mysqli_fetch_assoc($enrolments)) {
             echo "<p class='card-text'>Current Attendees: " . $enrolmentTotal . "/" . $courses["maxAttendees"] . "</p>";
             $iteration = 1;
         }
-
-    end($row);
-        if ($field === key($row)){
-
-            //adds button to end of table with ID the same as the current UID of the row for the course
-            echo "<a href='#' class='cancelEnrolmentButton btn btn-danger' id='" . $row['enrolmentID'] . "'>Cancel</a>";
-        }
     }
+    
+    //adds button to end of table with ID the same as the current UID of the row for the course
+    echo "<a href='#' class='enrolButton btn btn-primary' id='" . $row["courseID"] . "'>Enrol</a>";
     echo "</div>";
     echo "</div>";
+
 }
 
 ?>
