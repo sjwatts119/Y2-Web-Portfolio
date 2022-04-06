@@ -45,7 +45,7 @@ else{
             if ($field === key($row)){
     
                 //adds button to end of table with ID the same as the current UID of the row for the user
-                echo "<td>" . "<button class='removeUserButton btn btn-danger' id='" . "$UIDValue" . "'>Remove</button" . "</td>";
+                echo "<td>" . "<button class='removeUserButton btn btn-danger' course='" . $_POST["courseID"] . "' id='" . "$UIDValue" . "'>Remove</button" . "</td>";
             }
         }
         echo "</tr>";

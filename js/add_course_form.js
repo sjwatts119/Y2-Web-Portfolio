@@ -109,10 +109,64 @@ $(document).on("click", ".viewUsersButton", function(){
                 $('#participantsTableWrap').html(newState);
               },
               error: function() {
-                  Swal.fire("Error", "There was an error Cancelling the Enrolment", "error");
+                  Swal.fire("Error", "There was an error Retrieving users on this Course", "error");
               }
           });
 
+});
+
+$(document).on("click", ".removeUserButton", function(){
+
+  Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, Delete',
+      reverseButtons: true
+  }).then((result) => {
+      if (result.isConfirmed) {
+
+          var thisObject = this;
+          var id = this.id;
+          var courseID = this.getAttribute("course");
+          console.log(courseID);
+
+          $.ajax({
+              type: "POST",
+              url: "../../php/delete_enrolment.php",
+              data: {
+                  userID: id,
+                  courseID: courseID
+              },
+              success: function() {
+                $.ajax({
+                  type: "post",
+                  url: "../../php/retrieve_users_on_course.php",
+                  dataType: 'html',
+                  data: {
+                      courseID: courseID
+                  },
+    
+                  success: function(data) {
+                    var newState = $.trim(data);
+                    $('#participantsTableWrap').html(newState);
+                  },
+                  error: function() {
+                      Swal.fire("Error", "There was an error Retrieving users on this Course", "error");
+                  }
+              });
+                  Swal.fire("Success", "Enrolment has been Removed.", "success");
+
+              },
+              error: function() {
+                  Swal.fire("Error", "There was an error deleting the user.", "error");
+              }
+          });
+    }
+  })  
 });
 
 var Modal = document.getElementById('Modal')
