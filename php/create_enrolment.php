@@ -46,7 +46,9 @@ else{
                 $to = $user["email"];
                 $subject = "You have been Enrolled on a Course";
                 $message = "<h3>Hello " . $user["email"] . ",</br></br>You have been successfully enrolled on course: " . $courses["courseTitle"] . ",</br></br>If you have any questions regarding this, please contact an admin.";
-                include_once("send_mail.php");
+                $headers = 'From: webmaster@WS296281-wad.remote.ac';
+
+                mail($to, $subject, $message, $headers);
             }
             echo "success";
         }
