@@ -1,7 +1,6 @@
 <?php
 
 $CIDValue = 1;
-$iteration = 1;
 $arrayOfEnrolledCourses = [];
 
 require_once("_connect.php");
@@ -21,36 +20,37 @@ while ($row = mysqli_fetch_assoc($enrolments)) {
     $courses = mysqli_query($db_connect, $sql);
     $courses = $courses->fetch_assoc();
 
-    foreach ($row as $field => $value) {
+    //Iterating through each column on the table and outputting it into a card
+    for ($iteration = 1; $iteration < 6; $iteration++) {
 
         if($iteration == 1){
             //Inputs the current field into the card
             echo "<h5 class='card-title'>" . $courses["courseTitle"] . "</h5>"; 
-            $iteration++;
         }
         else if($iteration == 2){
             //Inputs the current field into the card
             echo "<p class='card-text'>Course Date: " . $courses["courseDate"] . "</p>";
-            $iteration++;
         }
         else if($iteration == 3){
+            //Inputs the current field into the card
+            echo "<p class='card-text'>Course Duration (Weeks): " . $courses["courseDuration"] . "</p>";
+        }
+        else if($iteration == 4){
+            //find number of enrolments for current course to figure out if the course is at capacity or not.
             $sql = "SELECT enrolmentID FROM enrolments WHERE courseID=" . $courses["courseID"];
             $enrolmentTotal = mysqli_query($db_connect, $sql);
             $enrolmentTotal = mysqli_num_rows($enrolmentTotal);
 
             //Inputs the current field into the card
             echo "<p class='card-text'>Current Attendees: " . $enrolmentTotal . "/" . $courses["maxAttendees"] . "</p>";
-            $iteration = 1;
         }
-
-    end($row);
-        if ($field === key($row)){
-
-            //adds button to end of table with ID the same as the current UID of the row for the course
-            echo "<a href='#' class='cancelEnrolmentButton btn btn-danger' id='" . $row['enrolmentID'] . "'>Cancel</a>";
-            echo "<a href='#' class='moreInfoButton btn btn-secondary' id='" . $row["courseID"] . "'>View</a>";
+        else if($iteration == 5){
+            //Inputs the current field into the card
+            echo "<p class='card-text'>Coruse Description: " . $courses["courseDescription"] . "</p>";
         }
     }
+    //adds button to end of table with ID the same as the current UID of the row for the course
+    echo "<a href='#' class='cancelEnrolmentButton btn btn-danger' id='" . $row['enrolmentID'] . "'>Cancel</a>";
     echo "</div>";
     echo "</div>";
     array_push($arrayOfEnrolledCourses, $row["courseID"]);

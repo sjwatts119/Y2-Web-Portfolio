@@ -109,11 +109,3 @@
 <script src="../../js/scripts.js"></script>
 <script rel="preconnect" src="../../js/preloader.js"></script>
 <script src="../../js/add_course_form.js"></script>
-
-<script>
-
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-}
-
-</script>
