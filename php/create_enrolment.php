@@ -37,6 +37,17 @@ else{
         if($stmt->execute()){
             //Closes the prepared statement.
             mysqli_stmt_close($stmt);
+
+            $stmt = $db_connect->prepare("SELECT `email`, `firstName` FROM `users` WHERE `userID` = ?");
+            $stmt->bind_param("i", $userID);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                $user = $result->fetch_assoc();
+                $to = $user["email"];
+                $subject = "You have been Enrolled on a Course";
+                $message = "<h3>Hello " . $user["email"] . ",</br></br>You have been successfully enrolled on course: " . $courses["courseTitle"] . ",</br></br>If you have any questions regarding this, please contact an admin.";
+                include_once("send_mail.php");
+            }
             echo "success";
         }
         else{

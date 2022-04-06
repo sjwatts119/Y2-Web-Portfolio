@@ -37,7 +37,6 @@
             <li class="nav-item dropdown <?php if($_SESSION['auth'] != "admin"){echo "d-none";} ?>" id="adminDropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">View Participants</a></li>
                 <li><a class="dropdown-item" href="admin/users.php">Manage Users</a></li>
                 <li><a class="dropdown-item" href="admin/courses.php">Manage Courses</a></li>
               </ul>
