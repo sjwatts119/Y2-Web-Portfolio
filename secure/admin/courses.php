@@ -51,6 +51,19 @@
       </div>
     </nav>
 
+    <div class="modal fade" id="participantsModal" tabindex="-1" aria-labelledby="ParticipantModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ParticipantModalLabel">Course</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="participantsTableWrap">
+          </div>
+        </div>
+      </div>
+    </div>
+
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal" data-bs-title="New Course">New Course</button>
 
     <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -109,3 +122,36 @@
 <script src="../../js/scripts.js"></script>
 <script rel="preconnect" src="../../js/preloader.js"></script>
 <script src="../../js/add_course_form.js"></script>
+
+<script>
+
+$('.viewUsersButton').click(function(e) {
+  var thisObject = this
+  var id = this.id;
+
+  // $.post('../../php/retrieve_users_on_course.php', {courseID: id}, function(data) {
+  //           // $('div#name-data').text(data);
+  //           // jQuery('#name-data').html(RESPONSE);
+  //           $('div#participantsTableWrap').html(data);
+  //   });
+
+  $.ajax({
+              type: "post",
+              url: "../../php/retrieve_users_on_course.php",
+              dataType: 'html',
+              data: {
+                  courseID: id
+              },
+
+              success: function(data) {
+                var newState = $.trim(data);
+                $('#participantsTableWrap').html(newState);
+              },
+              error: function() {
+                  Swal.fire("Error", "There was an error Cancelling the Enrolment", "error");
+              }
+          });
+
+});
+
+</script>

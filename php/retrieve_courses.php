@@ -14,8 +14,9 @@ echo "<td>" . "<div class='tableHeader'>Course Date</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>Course Duration</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>Max Attendees</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>Course Description</div>" . "</td>";
-echo "<td>" . "<div class='tableHeader'>Delete Course</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Participants</div>" . "</td>";
 echo "<td>" . "<div class='tableHeader'>Update Course</div>" . "</td>";
+echo "<td>" . "<div class='tableHeader'>Delete Course</div>" . "</td>";
 
 while ($row = mysqli_fetch_assoc($result)) {
     echo "<tr id=row" . $row["courseID"] . ">";
@@ -32,10 +33,12 @@ while ($row = mysqli_fetch_assoc($result)) {
         end($row);
         if ($field === key($row)){
 
+            //adds button to end of table with ID the same as the current UID of the row for the user
+            echo "<td>" . "<button type='button' class='viewUsersButton btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#participantsModal' data-bs-title='View Participants' id='" . "$CIDValue" . "'>Participants</button" . "</td>";
+             //adds button to end of table with ID the same as the current UID of the row for the course
+            echo "<td>" . "<button type ='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal' data-bs-coursename='". $row["courseTitle"] . "' data-bs-coursedate='". $row["courseDate"] . "' data-bs-courseduration='". $row["courseDuration"] . "' data-bs-maxattendees='". $row["maxAttendees"] . "' data-bs-coursedescription='". $row["courseDescription"] . "'id='" . "$CIDValue" . "'>Update</button>" . "</td>";
             //adds button to end of table with ID the same as the current UID of the row for the course
             echo "<td>" . "<button class='deleteCourseButton btn btn-danger' id='" . "$CIDValue" . "'>Delete</button" . "</td>";
-            //adds button to end of table with ID the same as the current UID of the row for the course
-            echo "<td>" . "<button type ='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal' data-bs-coursename='". $row["courseTitle"] . "' data-bs-coursedate='". $row["courseDate"] . "' data-bs-courseduration='". $row["courseDuration"] . "' data-bs-maxattendees='". $row["maxAttendees"] . "' data-bs-coursedescription='". $row["courseDescription"] . "'id='" . "$CIDValue" . "'>Update</button>" . "</td>";
         }
     }
     echo "</tr>";
