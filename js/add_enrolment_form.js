@@ -122,6 +122,9 @@ $(document).on("click", ".enrolButton", function(){
                         }
                 });
               }
+              else if (data === "error with mail"){
+                Swal.fire("Error", "Error with confirmation email, You're now Enrolled", "error");
+              }
               else{
                 Swal.fire("Error", "Course is at Capacity", "error");
               }
