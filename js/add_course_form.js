@@ -1,5 +1,4 @@
-$('.deleteCourseButton').click(function() {
-
+$(document).on("click", ".deleteCourseButton", function(){
   Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -34,7 +33,7 @@ $('.deleteCourseButton').click(function() {
   })  
 });
 
-$('#courseModal').on('submit', function (e) {
+$(document).on("submit", "#courseModal", function(e){
 
   e.preventDefault();
 
@@ -63,39 +62,57 @@ $('#courseModal').on('submit', function (e) {
                 data: $( "#courseModal" ).serialize() + "&title="+ modalTitle,
                 dataType: "json",
                 success: function(data) {
-                  //runs if a new user has been created
-                  if (data[5] === true){
-                    Swal.fire("Success", "User has been created.", "success");
-                    //assigns users table to variable table
-                    //reloads for now to show new user in table.
-                    location.reload();
-                  }
-                  //runs if an existing user has been modified/updated
-                  else if (data[5] === false){
-                    Swal.fire("Success", "User has been updated.", "success");
-                    //getting ID of table row element that is related to this specific user
-                    var rowName = "row" + data[0];
-                    //updating form email field with ajax
-                    var parentRow = document.getElementById(rowName);
-                    //updating email table field with returned new email
-                    parentRow.children[1].textContent = data[1];
-                    //updating first name table field with returned new first name
-                    parentRow.children[2].textContent = data[2];
-                    //updating last name table field with returned new last name
-                    parentRow.children[3].textContent = data[3];
-                    //updating access level table field with returned new access level
-                    parentRow.children[4].textContent = data[4];
-                    //updating job title table field with returned new job title
-                    parentRow.children[5].textContent = data[6];
-                  }
-
+                  $.ajax({
+                    type: "post",
+                    url: "../../php/retrieve_courses.php",
+                    dataType: 'html',
+      
+                    success: function(data2) {
+                      var newState = $.trim(data2);
+                      $('.tableWrap').html(newState);
+                      $('#Modal').modal('hide');
+                      if (data[5] === true){
+                        Swal.fire("Success", "Course has been created.", "success");
+                      }
+                      //runs if an existing user has been modified/updated
+                      else if(data[5] === false){
+                        Swal.fire("Success", "Course has been updated.", "success");
+                      }
+                    },
+                    error: function() {
+                        Swal.fire("Error", "There was an error Updating the Courses Table", "error");
+                    }
+                });
                 },
                 error: function() {
-                    Swal.fire("Error", "There was an error updating the user.", "error");
+                    Swal.fire("Error", "There was an error updating the Course.", "error");
                 }
             });
       }
   })  
+});
+
+$(document).on("click", ".viewUsersButton", function(){
+  var thisObject = this
+  var id = this.id;
+
+  $.ajax({
+              type: "post",
+              url: "../../php/retrieve_users_on_course.php",
+              dataType: 'html',
+              data: {
+                  courseID: id
+              },
+
+              success: function(data) {
+                var newState = $.trim(data);
+                $('#participantsTableWrap').html(newState);
+              },
+              error: function() {
+                  Swal.fire("Error", "There was an error Cancelling the Enrolment", "error");
+              }
+          });
+
 });
 
 var Modal = document.getElementById('Modal')
