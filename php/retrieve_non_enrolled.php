@@ -1,4 +1,18 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once("_connect.php");
+
+//Getting array of Enrolled Courses for current user
+$arrayOfEnrolledCourses = [];
+$sql = "SELECT enrolmentID, userID, courseID FROM enrolments WHERE userID =" . $_SESSION['userID'];
+$enrolments = mysqli_query($db_connect, $sql);
+while ($row = mysqli_fetch_assoc($enrolments)){
+    array_push($arrayOfEnrolledCourses, $row["courseID"]);
+}
+$arrayOfEnrolledCourses = array_unique($arrayOfEnrolledCourses);
 
 $implodedArrayOfEnrolledCourses = implode( ',', $arrayOfEnrolledCourses);
 

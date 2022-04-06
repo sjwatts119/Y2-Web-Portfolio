@@ -1,4 +1,4 @@
-$('.cancelEnrolmentButton').click(function() {
+$(document).on("click", ".cancelEnrolmentButton", function(){
 
   Swal.fire({
       title: 'Are you sure?',
@@ -22,10 +22,37 @@ $('.cancelEnrolmentButton').click(function() {
                   enrolmentID: id
               },
               success: function() {
-                  $(thisObject).parent().parent().remove();
-                  Swal.fire("Success", "Enrolment has been Cancelled", "success");
-                  location.reload();
-
+                //Ajax to update the enrolled courses cards
+                    $.ajax({
+                      type: "post",
+                      url: "../php/retrieve_enrolments.php",
+                      dataType: 'html',
+        
+                      success: function(data2) {
+                        var newState = $.trim(data2);
+                        $('#enrolled').html(newState);
+                        $('#Modal').modal('hide');
+                      },
+                      error: function() {
+                          Swal.fire("Error", "There was an error Updating the Enrolments Table", "error");
+                      }
+                  });
+                  //Ajax to update the non-enrolled courses cards
+                  $.ajax({
+                    type: "post",
+                    url: "../php/retrieve_non_enrolled.php",
+                    dataType: 'html',
+      
+                    success: function(data2) {
+                      var newState = $.trim(data2);
+                      $('#non-enrolled').html(newState);
+                      $('#Modal').modal('hide');
+                      Swal.fire("Success", "Enrolment has been Cancelled.", "success");
+                    },
+                    error: function() {
+                        Swal.fire("Error", "There was an error Updating the Courses Table", "error");
+                    }
+                });
               },
               error: function() {
                   Swal.fire("Error", "There was an error Cancelling the Enrolment", "error");
@@ -35,7 +62,8 @@ $('.cancelEnrolmentButton').click(function() {
   })  
 });
 
-$('.enrolButton').click(function() {
+
+$(document).on("click", ".enrolButton", function(){
 
   Swal.fire({
       title: 'Are you sure?',
@@ -60,13 +88,43 @@ $('.enrolButton').click(function() {
               },
               dataType: "text",
               success: function(data) {
-                  if(data=="success"){
-                    Swal.fire("Success", "You've been Enrolled Successfully", "success");
-                    location.reload();
-                  }
-                  else{
-                    Swal.fire("Error", "Course is at Capacity", "error");
-                  }
+                if(data=="success"){
+                  Swal.fire("Success", "You've been Enrolled Successfully", "success");
+                    //Ajax to update the enrolled courses cards
+                    $.ajax({
+                      type: "post",
+                      url: "../php/retrieve_enrolments.php",
+                      dataType: 'html',
+        
+                        success: function(data2) {
+                          var newState = $.trim(data2);
+                          $('#enrolled').html(newState);
+                          $('#Modal').modal('hide');
+                        },
+                        error: function() {
+                            Swal.fire("Error", "There was an error Updating the Enrolments Table", "error");
+                        }
+                  });
+                  //Ajax to update the non-enrolled courses cards
+                    $.ajax({
+                      type: "post",
+                      url: "../php/retrieve_non_enrolled.php",
+                      dataType: 'html',
+        
+                        success: function(data2) {
+                          var newState = $.trim(data2);
+                          $('#non-enrolled').html(newState);
+                          $('#Modal').modal('hide');
+                          Swal.fire("Success", "Enrolment has been Created", "success");
+                        },
+                        error: function() {
+                            Swal.fire("Error", "There was an error Updating the Courses Table", "error");
+                        }
+                });
+              }
+              else{
+                Swal.fire("Error", "Course is at Capacity", "error");
+              }
               },
               error: function(data) {
                   Swal.fire("Error", "There was an error", "error");

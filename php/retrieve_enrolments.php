@@ -1,7 +1,10 @@
 <?php
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $CIDValue = 1;
-$arrayOfEnrolledCourses = [];
 
 require_once("_connect.php");
 
@@ -46,15 +49,13 @@ while ($row = mysqli_fetch_assoc($enrolments)) {
         }
         else if($iteration == 5){
             //Inputs the current field into the card
-            echo "<p class='card-text'>Coruse Description: " . $courses["courseDescription"] . "</p>";
+            echo "<p class='card-text'>Course Description: " . $courses["courseDescription"] . "</p>";
         }
     }
     //adds button to end of table with ID the same as the current UID of the row for the course
     echo "<a href='#' class='cancelEnrolmentButton btn btn-danger' id='" . $row['enrolmentID'] . "'>Cancel</a>";
     echo "</div>";
     echo "</div>";
-    array_push($arrayOfEnrolledCourses, $row["courseID"]);
 }
-$arrayOfEnrolledCourses = array_unique($arrayOfEnrolledCourses);
 
 ?>
