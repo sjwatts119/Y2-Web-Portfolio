@@ -43,6 +43,13 @@ while ($row = mysqli_fetch_assoc($result)) {
     }
     echo "</tr>";
 }
+//Add a row to the bottom of the table with the button to add a new user.
+echo "<tr>";
+echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal' data-bs-title='New Course'>+</button></td>";
+for($iteration = 0; $iteration <8; $iteration++){
+    echo "<td></td>"; 
+}
+echo "</tr>";
 echo "</table>";
 
 ?>

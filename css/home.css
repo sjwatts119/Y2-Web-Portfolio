@@ -103,3 +103,15 @@ label {
   text-align: center;
   color:white;
 }
+
+@media only screen and (max-width: 800px) {
+  .flickity-cell {
+    width: 90%;
+    padding:10px;
+    padding-bottom: 20px;
+  }
+  .card-text{
+    padding:7px;
+  }
+
+}
