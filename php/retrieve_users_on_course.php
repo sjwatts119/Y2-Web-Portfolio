@@ -43,7 +43,7 @@ else{
             if ($field === key($row)){$UIDValue = $value;}
     
             //Inputs the current field into the table
-            echo "<td>" . $value . "</td>"; 
+            echo "<td><div class='field'>" . $value . "</div></td>"; 
     
             //finds last element in each row so a button can be added afterwards
             end($row);

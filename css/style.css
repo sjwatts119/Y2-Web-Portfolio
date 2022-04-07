@@ -18,3 +18,20 @@
   background-color: #11171f;
 }
 
+.field{
+  max-height: 100px;
+  max-width: 200px;
+  overflow-y: auto;
+}
+
+.field::-webkit-scrollbar {
+  height:5px;
+  width:8px;
+}
+
+.field::-webkit-scrollbar-thumb{
+  height:10%;
+  background-color:gray;
+  border-radius: 5px;
+}
+
