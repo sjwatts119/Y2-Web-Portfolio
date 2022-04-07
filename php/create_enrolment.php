@@ -38,7 +38,7 @@ else{
             //Closes the prepared statement.
             mysqli_stmt_close($stmt);
 
-            $stmt = $db_connect->prepare("SELECT `email`, `firstName`, `courseDate` FROM `users` WHERE `userID` = ?");
+            $stmt = $db_connect->prepare("SELECT `email`, `firstName` FROM `users` WHERE `userID` = ?");
             $stmt->bind_param("i", $userID);
             if($stmt->execute()){
                 $result = $stmt->get_result();
