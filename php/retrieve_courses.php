@@ -4,8 +4,10 @@ $CIDValue = 1;
 
 require_once("_connect.php");
 
+//No need for prepared statement as no user data included
 $sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses";
-$result = mysqli_query($db_connect, $sql); 
+$result = mysqli_query($db_connect, $sql);
+
 echo "<br>";
 echo "<table id='coursesTable' class='coursesTable'>";
 echo "<td>" . "<div class='tableHeader'>Course ID</div>" . "</td>";

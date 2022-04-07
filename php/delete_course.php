@@ -2,10 +2,12 @@
     if(isset($_POST["CID"]))
     {
         include_once("_connect.php");
-        $CID = $_POST["CID"];
+        $CID = mysqli_real_escape_string($db_connect,$_POST["CID"]);
 
-        $query = "DELETE FROM courses WHERE courseID = $CID;";
+        $sql = "DELETE FROM courses WHERE courseID=?";
 
-        $run = mysqli_query($db_connect, $query);
+        $stmt = $db_connect->prepare($sql); 
+        $stmt->bind_param("i", $CID);
+        $stmt->execute();
     }
 ?>

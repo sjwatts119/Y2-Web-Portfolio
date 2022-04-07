@@ -2,7 +2,7 @@
     session_start();
 
     if($_SESSION['auth'] != "admin"){
-        header("Location: ./");
+        header("Location: ../");
     }
     if(empty($_POST)){
         die("Missing POST Values");

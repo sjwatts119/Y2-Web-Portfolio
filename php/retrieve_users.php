@@ -4,8 +4,10 @@ $UIDValue = 1;
 
 require_once("_connect.php");
 
+//No need for prepared statement as no user inputted data included
 $sql = "SELECT userID, email, firstName, lastName, jobTitle, access FROM users";
 $result = mysqli_query($db_connect, $sql); 
+
 echo "<br>";
 echo "<table id='usersTable' class='usersTable'>";
 echo "<td>" . "<div class='tableHeader'>User ID</div>" . "</td>";

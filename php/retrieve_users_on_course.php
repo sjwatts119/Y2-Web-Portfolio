@@ -4,8 +4,12 @@ require_once("_connect.php");
 
 $enrolledUserIDs = array();
 
-$sql = "SELECT userID FROM enrolments WHERE courseID =" . $_POST["courseID"];
-$enrolments = mysqli_query($db_connect, $sql);
+//prepared statement to find all enrolments for each course
+$sql = "SELECT userID FROM enrolments WHERE courseID = ?"; 
+$stmt = $db_connect->prepare($sql); 
+$stmt->bind_param("i", $_POST["courseID"]);
+$stmt->execute();
+$enrolments = $stmt->get_result(); 
 
 while($row = mysqli_fetch_array($enrolments)){
     array_push($enrolledUserIDs, $row["userID"]);
@@ -13,6 +17,7 @@ while($row = mysqli_fetch_array($enrolments)){
 
 $enrolledUserIDs = implode( ',', $enrolledUserIDs);
 
+//No need for prepared statement as no user inputted data included
 $sql = "SELECT userID, email, firstName, lastName, jobTitle FROM users WHERE userID IN (" . $enrolledUserIDs . ")";
 $enrolledUsers = mysqli_query($db_connect, $sql); 
 

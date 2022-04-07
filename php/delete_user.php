@@ -2,10 +2,15 @@
     if(isset($_POST["UID"]))
     {
         include_once("_connect.php");
-        $UID = $_POST["UID"];
 
-        $query = "DELETE FROM users WHERE userID = $UID;";
+        $UID = mysqli_real_escape_string($db_connect,$_POST["UID"]);
 
-        $run = mysqli_query($db_connect, $query);
+        $sql = "DELETE FROM users WHERE userID=?";
+
+        $stmt = $db_connect->prepare($sql); 
+        $stmt->bind_param("i", $UID);
+        if($stmt->execute()){
+            echo ("User deleted Successfully");
+        }
     }
 ?>

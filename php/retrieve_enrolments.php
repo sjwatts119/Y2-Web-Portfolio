@@ -8,11 +8,16 @@ $CIDValue = 1;
 
 require_once("_connect.php");
 
+//No need for prepared statement as no user data included
 $sql = "SELECT userID, email, firstName, lastName, jobTitle, access FROM users";
-$coursesForTotal = mysqli_query($db_connect, $sql); 
+$coursesForTotal = mysqli_query($db_connect, $sql);
 
-$sql = "SELECT enrolmentID, userID, courseID FROM enrolments WHERE userID =" . $_SESSION['userID'];
-$enrolments = mysqli_query($db_connect, $sql);
+//prepared statement for retrieving a users enrolment based on the user who is currently signed in.
+$sql = "SELECT enrolmentID, userID, courseID FROM enrolments WHERE userID =?"; 
+$stmt = $db_connect->prepare($sql); 
+$stmt->bind_param("i", $_SESSION['userID']);
+$stmt->execute();
+$enrolments = $stmt->get_result(); 
 
 //if no enrolments found for current user, return a card stating they can enrol on one of the available courses below.
 if (mysqli_num_rows($enrolments) == 0){
@@ -29,6 +34,7 @@ else{
         echo "<div id='card' class='card'>";
         echo "<div id='card-body' class='card-body'>";
     
+        //No need for prepared statement as no user data included
         $sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses WHERE courseID=" . $row["courseID"];
         $courses = mysqli_query($db_connect, $sql);
         $courses = $courses->fetch_assoc();
@@ -50,6 +56,7 @@ else{
             }
             else if($iteration == 4){
                 //find number of enrolments for current course to figure out if the course is at capacity or not.
+                //No need for prepared statement as no user data included
                 $sql = "SELECT enrolmentID FROM enrolments WHERE courseID=" . $courses["courseID"];
                 $enrolmentTotal = mysqli_query($db_connect, $sql);
                 $enrolmentTotal = mysqli_num_rows($enrolmentTotal);

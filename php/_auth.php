@@ -40,19 +40,16 @@ else{
                     die ("Invalid Email Address");
                 }
         
-                $query = 
-                "SELECT
-                *
-                FROM
-                `users`
-                WHERE
-                `email` = '$email'";
+                    //Prepared statement for checking user credentials
+                    $sql = "SELECT * FROM users WHERE email = ?"; 
+                    $stmt = $db_connect->prepare($sql); 
+                    $stmt->bind_param("s", $email);
+                    $stmt->execute();
+                    $result = $stmt->get_result(); 
         
-                $run = mysqli_query($db_connect,$query);
-        
-                if(mysqli_num_rows($run) == 1){
+                if(mysqli_num_rows($result) == 1){
                     //If user account matching email is found
-                    $result = mysqli_fetch_assoc($run);
+                    $result = mysqli_fetch_assoc($result);
                     if (password_verify($password, $result["password"])){
 
                         $_SESSION["auth"] = $result["access"];

@@ -7,6 +7,8 @@ require_once("_connect.php");
 
 //Getting array of Enrolled Courses for current user
 $arrayOfEnrolledCourses = [];
+
+//No need for prepared statement as no user inputted data included
 $sql = "SELECT enrolmentID, userID, courseID FROM enrolments WHERE userID =" . $_SESSION['userID'];
 $enrolments = mysqli_query($db_connect, $sql);
 while ($row = mysqli_fetch_assoc($enrolments)){
@@ -16,12 +18,15 @@ $arrayOfEnrolledCourses = array_unique($arrayOfEnrolledCourses);
 
 $implodedArrayOfEnrolledCourses = implode( ',', $arrayOfEnrolledCourses);
 
+//No need for prepared statement as no user inputted data included
 $sql = "SELECT enrolmentID, userID, courseID FROM enrolments WHERE userID =" . $_SESSION['userID'];
 $enrolments = mysqli_query($db_connect, $sql);
 
+//No need for prepared statement as no user inputted data included
 $nonEnrolledCourses = "SELECT courseID, courseTitle, courseDate, maxAttendees FROM courses WHERE courseID NOT IN (" . $implodedArrayOfEnrolledCourses . ")";
 $nonEnrolled = mysqli_query($db_connect, $nonEnrolledCourses);
 
+//No need for prepared statement as no user inputted data included
 $sql = "SELECT courseID FROM courses";
 $totalCourses = mysqli_query($db_connect, $sql);
 
@@ -37,7 +42,7 @@ if (mysqli_num_rows($enrolments) >= mysqli_num_rows($totalCourses)){
 else{
     //If user not enrolled on any courses, display all courses in unenrolled section.
     if (!$nonEnrolled){
-
+        //No need for prepared statement as no user data included
         $sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses";
         $result = mysqli_query($db_connect, $sql); 
 
@@ -45,7 +50,8 @@ else{
 
             echo "<div id='card' class='card'>";
             echo "<div id='card-body' class='card-body'>";
-        
+            
+            //No need for prepared statement as no user data included
             $sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses WHERE courseID=" . $row["courseID"];
             $courses = mysqli_query($db_connect, $sql);
             $courses = $courses->fetch_assoc();
@@ -66,6 +72,7 @@ else{
                 }
                 else if($iteration == 4){
                     //find number of enrolments for current course to figure out if the course is at capacity or not.
+                    //No need for prepared statement as no user data included
                     $sql = "SELECT enrolmentID FROM enrolments WHERE courseID=" . $courses["courseID"];
                     $enrolmentTotal = mysqli_query($db_connect, $sql);
                     $enrolmentTotal = mysqli_num_rows($enrolmentTotal);
@@ -94,6 +101,7 @@ else{
             echo "<div id='card' class='card'>";
             echo "<div id='card-body' class='card-body'>";
         
+            //No need for prepared statement as no user inputted data included
             $sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses WHERE courseID=" . $row["courseID"];
             $courses = mysqli_query($db_connect, $sql);
             $courses = $courses->fetch_assoc();
@@ -113,6 +121,7 @@ else{
                 echo "<p class='card-text'>Course Duration (Weeks): " . $courses["courseDuration"] . "</p>";
             }
             else if($iteration == 4){
+                //No need for prepared statement as no user inputted data included
                 //find number of enrolments for current course to figure out if the course is at capacity or not.
                 $sql = "SELECT enrolmentID FROM enrolments WHERE courseID=" . $courses["courseID"];
                 $enrolmentTotal = mysqli_query($db_connect, $sql);

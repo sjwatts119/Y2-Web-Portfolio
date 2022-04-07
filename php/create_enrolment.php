@@ -16,13 +16,19 @@ else{
     $userID = mysqli_real_escape_string($db_connect,$_SESSION["userID"]);
 
     //logic for preventing enrolment if the course is at maximum capacity.
-    $sql = "SELECT enrolmentID FROM enrolments WHERE courseID=" . $courseID;
-    $enrolmentTotal = mysqli_query($db_connect, $sql);
-    $enrolmentTotalRows = mysqli_num_rows($enrolmentTotal);
+    $sql = "SELECT enrolmentID FROM enrolments WHERE courseID=?";
+        $stmt = $db_connect->prepare($sql); 
+        $stmt->bind_param("i", $courseID);
+        $stmt->execute();
+        $enrolmentTotal = $stmt->get_result();
+        $enrolmentTotalRows = mysqli_num_rows($enrolmentTotal);
 
-    $sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses WHERE courseID=" . $courseID;
-    $courses = mysqli_query($db_connect, $sql);
-    $courses = $courses->fetch_assoc();
+    $sql = "SELECT courseID, courseTitle, courseDate, courseDuration, maxAttendees, courseDescription FROM courses WHERE courseID=?";
+        $stmt = $db_connect->prepare($sql); 
+        $stmt->bind_param("i", $courseID);
+        $stmt->execute();
+        $courses = $stmt->get_result();
+        $courses = $courses->fetch_assoc();
 
     //if amount of users currently enrolled is higher or equal to the maximum attendees, prevent enrolling.
     if ($enrolmentTotalRows >= $courses["maxAttendees"]){

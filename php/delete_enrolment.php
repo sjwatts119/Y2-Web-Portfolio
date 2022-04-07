@@ -1,27 +1,33 @@
 <?php
-    echo ($_POST["userID"]);
-    echo ($_POST["courseID"]);
-
     if(isset($_POST["enrolmentID"]))
     {
         include_once("_connect.php");
-        $enrolmentID = $_POST["enrolmentID"];
+        $enrolmentID = mysqli_real_escape_string($db_connect,$_POST["enrolmentID"]);
 
-        $query = "DELETE FROM enrolments WHERE enrolmentID = $enrolmentID;";
+        $sql = "DELETE FROM enrolments WHERE enrolmentID=?";
 
-        $run = mysqli_query($db_connect, $query);
+        $stmt = $db_connect->prepare($sql); 
+        $stmt->bind_param("i", $enrolmentID);
 
-        echo ("Enrolment removed Successfully");
+        if($stmt->execute()){
+            echo ("Enrolment removed Successfully");
+        }
     }
     else if(isset($_POST["userID"]) && isset($_POST["courseID"]))
     {
         include_once("_connect.php");
-        $userID = $_POST["userID"];
-        $courseID = $_POST["courseID"];
+        $userID =  mysqli_real_escape_string($db_connect,$_POST["userID"]);
+        $courseID =  mysqli_real_escape_string($db_connect,$_POST["courseID"]);
 
-        $query = "DELETE FROM enrolments WHERE userID = $userID AND courseID = $courseID;";
+        $query = "DELETE FROM enrolments WHERE userID = $userID AND courseID = $courseID";
 
-        $run = mysqli_query($db_connect, $query);
-        echo ("Enrolment removed Successfully");
+        $sql = "DELETE FROM enrolments WHERE userID =? AND courseID =?";
+
+        $stmt = $db_connect->prepare($sql); 
+        $stmt->bind_param("ii", $userID, $courseID);
+
+        if($stmt->execute()){
+            echo ("Enrolment removed Successfully");
+        }
     }
 ?>
