@@ -46,7 +46,7 @@ else{
                 $to = "<" . $user["email"] . ">";
                 $subject = "You have been Enrolled on a Course.";
 
-                $message = "Hello <h3>" . $user["email"] . "</h3>,";
+                $message = "Hello <h3>" . $user["email"] . ",</h3>";
                 $message .= "<br><br>You have been successfully enrolled on course: <h3>" . $courses["courseTitle"] . ",</h3>";
                 $message .= "<br><br>This course starts on: <h3>" . $courses["courseDate"] . ",</h3>";
                 $message .= "<br><br>If you have any questions regarding this, please contact an admin,";
