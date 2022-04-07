@@ -22,11 +22,11 @@ $(document).on("click", ".deleteCourseButton", function(){
               },
               success: function() {
                   $(thisObject).parent().parent().remove();
-                  Swal.fire("Success", "User has been deleted.", "success");
+                  Swal.fire("Success", "Course has been deleted.", "success");
 
               },
               error: function() {
-                  Swal.fire("Error", "There was an error deleting the user.", "error");
+                  Swal.fire("Error", "There was an error deleting the Course.", "error");
               }
           });
     }
