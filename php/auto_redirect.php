@@ -7,7 +7,7 @@ if(isset($_SESSION["auth"]))
     $access = $_SESSION["auth"];
 
     if($access != "admin" or $access != "user"){
-        header("Location: secure/home.php");
+        header("Location: secure/home");
     }
 }
 

@@ -8,10 +8,10 @@ if(isset($_SESSION['auth']))
 
     }
     else{
-        header("Location: ../index.php?error=1");
+        header("Location: ../?error=1");
     }
 }
 else{
-    header("Location: ../index.php?error=1");
+    header("Location: ../?error=1");
 }
 ?>

@@ -1,0 +1,13 @@
+DirectoryIndex index.php
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+Header always edit Set-Cookie (.*) "$1; HTTPOnly"
+
+Header add X-Frame-Options: DENY
+Header add X-XSS-Protection: 1
+Header add X-Content-Type-Options: nosniff
+
+Options All -Indexes

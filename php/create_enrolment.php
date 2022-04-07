@@ -3,7 +3,7 @@
 session_start();
 
 if($_SESSION['auth'] != "admin" && $_SESSION['auth'] != "user"){
-    header("Location: ./index.php");
+    header("Location: ./index");
 }
 else if(empty($_POST)){
     die("Missing POST Values");

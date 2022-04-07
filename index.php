@@ -83,7 +83,7 @@ function Login()
                             //If the server replies with 'true', redirect them to another page.
                             if (response == "true")
                             {
-                                window.location.href = "secure/home.php";
+                                window.location.href = "secure/home";
                             }
                             else
                             {

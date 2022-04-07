@@ -26,20 +26,20 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../home.php">Enrol™</a>
+        <a class="navbar-brand" href="../home">Enrol™</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="../home.php">Home</a>
+              <a class="nav-link" aria-current="page" href="../home">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle active" href="courses.php" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+              <a class="nav-link dropdown-toggle active" href="courses" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="users.php">Manage Users</a></li>
-                <li><a class="dropdown-item active" href="courses.php">Manage Courses</a></li>
+                <li><a class="dropdown-item" href="users">Manage Users</a></li>
+                <li><a class="dropdown-item active" href="courses">Manage Courses</a></li>
               </ul>
             </li>
             <li class="nav-item">
