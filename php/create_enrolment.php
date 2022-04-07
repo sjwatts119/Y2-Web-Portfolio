@@ -45,10 +45,15 @@ else{
                 $user = $result->fetch_assoc();
                 $to = "<" . $user["email"] . ">";
                 $subject = "You have been Enrolled on a Course";
-                $message = "<h3>Hello " . $user["email"] . ",</br></br>You have been successfully enrolled on course: " . $courses["courseTitle"] . ",</br></br>If you have any questions regarding this, please contact an admin.";
+
+                $message = "<h3>Hello " . $user["email"];
+                $message .= ",</br></br>You have been successfully enrolled on course: " . $courses["courseTitle"] . "";
+                $message .= ",</br></br>If you have any questions regarding this, please contact an admin.</h3>";
+
                 $headers = 'From: <webmaster@WS296281-wad.remote.ac>' . "\r\n" .
                     'BCC: <mail@WS296281-wad.remote.ac>' . "\r\n" .
-                    'Reply-To: <webmaster@WS296281-wad.remote.ac>';
+                    'Reply-To: <webmaster@WS296281-wad.remote.ac>' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
                 $mail = mail($to, $subject, $message, $headers);
                 if (!$mail){
                     echo "error with mail";
