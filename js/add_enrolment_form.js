@@ -88,46 +88,48 @@ $(document).on("click", ".enrolButton", function(){
               },
               dataType: "text",
               success: function(data) {
-                if(data=="success"){
+                //Ajax to update the enrolled courses cards
+                $.ajax({
+                  type: "post",
+                  url: "../php/retrieve_enrolments.php",
+                  dataType: 'html',
+    
+                    success: function(data2) {
+                      var newState = $.trim(data2);
+                      $('#enrolled').html(newState);
+                      $('#Modal').modal('hide');
+                    },
+                    error: function() {
+                        Swal.fire("Error", "There was an error Updating the Enrolments Table", "error");
+                    }
+              });
+                //Ajax to update the non-enrolled courses cards
+                $.ajax({
+                  type: "post",
+                  url: "../php/retrieve_non_enrolled.php",
+                  dataType: 'html',
+    
+                    success: function(data2) {
+                      var newState = $.trim(data2);
+                      $('#non-enrolled').html(newState);
+                      $('#Modal').modal('hide');
+                    },
+                    error: function() {
+                        Swal.fire("Error", "There was an error Updating the Courses Table", "error");
+                    }
+            });
+                if(data == "success"){
                   Swal.fire("Success", "You've been Enrolled Successfully", "success");
-                    //Ajax to update the enrolled courses cards
-                    $.ajax({
-                      type: "post",
-                      url: "../php/retrieve_enrolments.php",
-                      dataType: 'html',
-        
-                        success: function(data2) {
-                          var newState = $.trim(data2);
-                          $('#enrolled').html(newState);
-                          $('#Modal').modal('hide');
-                        },
-                        error: function() {
-                            Swal.fire("Error", "There was an error Updating the Enrolments Table", "error");
-                        }
-                  });
-                  //Ajax to update the non-enrolled courses cards
-                    $.ajax({
-                      type: "post",
-                      url: "../php/retrieve_non_enrolled.php",
-                      dataType: 'html',
-        
-                        success: function(data2) {
-                          var newState = $.trim(data2);
-                          $('#non-enrolled').html(newState);
-                          $('#Modal').modal('hide');
-                          Swal.fire("Success", "Enrolment has been Created", "success");
-                        },
-                        error: function() {
-                            Swal.fire("Error", "There was an error Updating the Courses Table", "error");
-                        }
-                });
-              }
-              else if (data === "error with mail"){
-                Swal.fire("Error", "Error with confirmation email, You're now Enrolled", "error");
-              }
-              else{
-                Swal.fire("Error", "Course is at Capacity", "error");
-              }
+                }
+                else if (data == "error with mail"){
+                  Swal.fire("Error", "Error with confirmation email, You're now Enrolled", "error");
+                }
+                else if (data == "course at capacity"){
+                  Swal.fire("Error", "Course is at Capacity", "error");
+                }
+                else{
+                  Swal.fire("Error", "An unknown error has occurred, you have been enrolled", "error")
+                }
               },
               error: function(data) {
                   Swal.fire("Error", "There was an error", "error");

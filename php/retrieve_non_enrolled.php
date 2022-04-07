@@ -110,7 +110,6 @@ else{
         
         //adds button to end of table with ID the same as the current UID of the row for the course
         echo "<a href='#' class='enrolButton btn btn-primary' id='" . $row["courseID"] . "'>Enrol</a>";
-        echo "<a href='#' class='moreInfoButton btn btn-secondary' id='" . $row["courseID"] . "'>View</a>";
         echo "</div>";
         echo "</div>";
     

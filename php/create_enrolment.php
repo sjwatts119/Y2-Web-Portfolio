@@ -26,7 +26,7 @@ else{
 
     //if amount of users currently enrolled is higher or equal to the maximum attendees, prevent enrolling.
     if ($enrolmentTotalRows >= $courses["maxAttendees"]){
-        die("Course at Capacity");
+        echo("course at capacity");
     }
     else{
         $stmt = $db_connect->prepare("INSERT INTO `enrolments` (`enrolmentID`, `userID`, `courseID`, `TIMESTAMP`) VALUES (NULL, ?, ?, 'current_timestamp()')");
@@ -53,9 +53,10 @@ else{
                 if (!$mail){
                     echo "error with mail";
                 }
+                else{
+                    echo "success";
+                }
             }
-            
-            echo "success";
         }
         else{
             die(mysqli_error($connect));
