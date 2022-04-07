@@ -24,14 +24,14 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="home.php">Enrol™</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="home.php">Home</a>
             </li>
             <li class="nav-item dropdown <?php if($_SESSION['auth'] != "admin"){echo "d-none";} ?>" id="adminDropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
@@ -48,12 +48,14 @@
       </div>
     </nav>
 
+    <div class="titleWrapper"><h3>Your Courses</h3></div>
     <div class="tableWrap enrolled-carousel" id="enrolled"> <?php include "../php/retrieve_enrolments.php"?></div>
 
+    <div class="titleWrapper"><h3>Available Courses</h3></div>
     <div class="tableWrap unenrolled-carousel" id="non-enrolled"> <?php include "../php/retrieve_non_enrolled.php"?></div>
     
 </body>
-<footer class="footer mt-auto py-3">Footer Content</footer>
+<footer class="footer mt-auto py-5"></footer>
 </html>
 
 <!-- jQuery CDN -->

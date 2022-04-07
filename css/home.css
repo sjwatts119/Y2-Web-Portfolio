@@ -12,7 +12,8 @@ body{
 .tableWrap{
     display: block;
     width:100%;
-    margin-top:50px;
+    margin-top:40px;
+    margin-bottom:40px;
 }
 
 .coursesTable {
@@ -96,4 +97,9 @@ label {
   height:10%;
   background-color:gray;
   border-radius: 5px;
+}
+
+.titleWrapper{
+  text-align: center;
+  color:white;
 }
