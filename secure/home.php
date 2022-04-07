@@ -55,7 +55,7 @@
     <div class="tableWrap unenrolled-carousel" id="non-enrolled"> <?php include "../php/retrieve_non_enrolled.php"?></div>
     
 </body>
-<footer class="footer mt-auto py-5"></footer>
+<footer class="footer mt-auto py-5"><div class="copyright">Copyright Enrol™ 2022</div></footer>
 </html>
 
 <!-- jQuery CDN -->
