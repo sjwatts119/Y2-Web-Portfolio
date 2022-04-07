@@ -1,5 +1,12 @@
 body{
-  font-family: 'Poppins', sans-serif
+  font-family: 'Poppins', sans-serif;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-image: linear-gradient(125deg,#001570,#9c0051, #5f0077);
+  background-size: 400% 400%;
+  animation: bganimation 25s infinite;
 }
 
 .tableWrap{
@@ -42,4 +49,51 @@ body{
 
 label {
   font-family: 'Poppins', sans-serif
+}
+
+.flickity-cell {
+  width: 60%;
+  min-height: 35vh;
+  height:fit-content;
+  position: relative;
+  padding:25px;
+  background-color: white;
+  border-radius: 15px;
+  margin-right:50px;
+  margin-left:50px;
+  border-color: white;
+  border-width: 1px;
+  background-color: #11171f;
+  color:white;
+}
+
+.flickity-cell .container {
+  height: 100%;
+}
+
+.flickity-button {
+  display: none !important;
+}
+
+.card-title{
+  padding:10px;
+}
+
+.card-text{
+  padding:10px;
+}
+
+.card-description{
+  height:100px;
+  overflow-y: scroll; 
+}
+
+.card-description::-webkit-scrollbar {
+  width: 8px;
+}
+
+.card-description::-webkit-scrollbar-thumb{
+  height:10%;
+  background-color:gray;
+  border-radius: 5px;
 }

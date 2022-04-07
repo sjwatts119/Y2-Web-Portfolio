@@ -13,14 +13,8 @@
     background-position: center;
 }
 
-.flickity-cell {
-    width: 60%;
-    height: 400px;
-    position: relative;
-    padding:50px;
-  }
-  
-  .flickity-cell .container {
-    height: 100%;
-  }
+.footer{
+  margin-top:40px !important;
+  background-color: #11171f;
+}
 

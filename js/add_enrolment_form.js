@@ -1,17 +1,10 @@
+$('.enrolled-carousel').flickity({});
+
+$('.unenrolled-carousel').flickity({});
+
 var $enrolledCarousel = $('.enrolled-carousel').flickity();
 var $unEnrolledCarousel = $('.unenrolled-carousel').flickity();
 
-$('.enrolled-carousel').flickity({
-  // options
-  cellAlign: 'left',
-  contain: true
-});
-
-$('.unenrolled-carousel').flickity({
-  // options
-  cellAlign: 'left',
-  contain: true
-});
 
 $(document).on("click", ".cancelEnrolmentButton", function(){
 
@@ -49,7 +42,6 @@ $(document).on("click", ".cancelEnrolmentButton", function(){
                         $enrolledCarousel.flickity('destroy');
                         $('#enrolled').html(newState);
                         $enrolledCarousel.flickity();
-
                         $('#Modal').modal('hide');
                       },
                       error: function() {
@@ -77,7 +69,6 @@ $(document).on("click", ".cancelEnrolmentButton", function(){
                         Swal.fire("Error", "There was an error Updating the Courses Table", "error");
                     }
                 });
-                reloadFlickity();
               },
               error: function() {
                   Swal.fire("Error", "There was an error Cancelling the Enrolment", "error");
@@ -141,7 +132,7 @@ $(document).on("click", ".enrolButton", function(){
     
                     success: function(data2) {
                       var newState = $.trim(data2);
-                      
+
                       //destroy current flickity carousel, change elements of cards, then rebuild flickity afterwards with new values
                       $unEnrolledCarousel.flickity('destroy');
                       $('#non-enrolled').html(newState);

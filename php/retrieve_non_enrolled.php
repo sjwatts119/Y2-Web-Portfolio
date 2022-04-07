@@ -37,26 +37,32 @@ if (!$nonEnrolled){
         $courses = mysqli_query($db_connect, $sql);
         $courses = $courses->fetch_assoc();
     
-        for ($iteration = 1; $iteration < 4; $iteration++) {
-    
+        for ($iteration = 1; $iteration < 6; $iteration++) {
+
             if($iteration == 1){
                 //Inputs the current field into the card
                 echo "<h5 class='card-title'>" . $courses["courseTitle"] . "</h5>"; 
-                $iteration++;
             }
             else if($iteration == 2){
                 //Inputs the current field into the card
                 echo "<p class='card-text'>Course Date: " . $courses["courseDate"] . "</p>";
-                $iteration++;
             }
             else if($iteration == 3){
+                //Inputs the current field into the card
+                echo "<p class='card-text'>Course Duration (Weeks): " . $courses["courseDuration"] . "</p>";
+            }
+            else if($iteration == 4){
+                //find number of enrolments for current course to figure out if the course is at capacity or not.
                 $sql = "SELECT enrolmentID FROM enrolments WHERE courseID=" . $courses["courseID"];
                 $enrolmentTotal = mysqli_query($db_connect, $sql);
                 $enrolmentTotal = mysqli_num_rows($enrolmentTotal);
     
                 //Inputs the current field into the card
                 echo "<p class='card-text'>Current Attendees: " . $enrolmentTotal . "/" . $courses["maxAttendees"] . "</p>";
-                $iteration = 1;
+            }
+            else if($iteration == 5){
+                //Inputs the current field into the card
+                echo "<p class='card-text card-description'>Course Description: " . $courses["courseDescription"] . "</p>";
             }
         }
         
@@ -104,18 +110,16 @@ else{
         }
         else if($iteration == 5){
             //Inputs the current field into the card
-            echo "<p class='card-text'>Coruse Description: " . $courses["courseDescription"] . "</p>";
+            echo "<p class='card-text card-description'>Course Description: " . $courses["courseDescription"] . "</p>";
         }
-        }
+    }
         
-        //adds button to end of table with ID the same as the current UID of the row for the course
-        echo "<a href='#' class='enrolButton btn btn-primary' id='" . $row["courseID"] . "'>Enrol</a>";
-        echo "</div>";
-        echo "</div>";
+    //adds button to end of table with ID the same as the current UID of the row for the course
+    echo "<a href='#' class='enrolButton btn btn-primary' id='" . $row["courseID"] . "'>Enrol</a>";
+    echo "</div>";
+    echo "</div>";
     
     }
 }
-
-
 
 ?>

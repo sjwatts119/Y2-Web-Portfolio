@@ -12,7 +12,16 @@ $sql = "SELECT userID, email, firstName, lastName, jobTitle, access FROM users";
 $coursesForTotal = mysqli_query($db_connect, $sql); 
 
 $sql = "SELECT enrolmentID, userID, courseID FROM enrolments WHERE userID =" . $_SESSION['userID'];
-$enrolments = mysqli_query($db_connect, $sql); 
+$enrolments = mysqli_query($db_connect, $sql);
+
+if (mysqli_num_rows($enrolments) == 0){
+    echo "<div id='card' class='card'>";
+    echo "<div id='card-body' class='card-body'>";
+    echo "<h5 class='card-title'>You're Currently not Enrolled on a Course.</h5>";
+    echo "<p class='card-text'>You can find the range of available courses below, when you're ready, please press the Enrol button to join the course of your choosing.</p>";
+    echo "</div>";
+    echo "</div>";
+}
 
 while ($row = mysqli_fetch_assoc($enrolments)) {
 
@@ -49,7 +58,7 @@ while ($row = mysqli_fetch_assoc($enrolments)) {
         }
         else if($iteration == 5){
             //Inputs the current field into the card
-            echo "<p class='card-text'>Course Description: " . $courses["courseDescription"] . "</p>";
+            echo "<p class='card-text card-description'>Course Description: " . $courses["courseDescription"] . "</p>";
         }
     }
     //adds button to end of table with ID the same as the current UID of the row for the course

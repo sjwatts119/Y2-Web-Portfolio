@@ -22,7 +22,7 @@
 <body id="stop-scrolling">
     <div class="preloader"></div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,6 +53,7 @@
     <div class="tableWrap unenrolled-carousel" id="non-enrolled"> <?php include "../php/retrieve_non_enrolled.php"?></div>
     
 </body>
+<footer class="footer mt-auto py-3">Footer Content</footer>
 </html>
 
 <!-- jQuery CDN -->
