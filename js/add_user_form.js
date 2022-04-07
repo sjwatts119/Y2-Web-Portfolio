@@ -1,7 +1,7 @@
 function disableMainAdmin(){
-  document.getElementById("1").disabled = true;
-  document.getElementById("1").style.backgroundColor = "DarkGrey";
-  document.getElementById("1").style.borderColor = "DarkGrey";
+  document.getElementById("33").disabled = true;
+  document.getElementById("33").style.backgroundColor = "DarkGrey";
+  document.getElementById("33").style.borderColor = "DarkGrey";
 }
 
 disableMainAdmin();
