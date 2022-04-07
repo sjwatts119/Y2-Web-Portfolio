@@ -51,7 +51,7 @@
     </nav>
 
     <div class="modal fade" id="participantsModal" tabindex="-1" aria-labelledby="ParticipantModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog  modalForCourse">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="ParticipantModalLabel">Course</h5>

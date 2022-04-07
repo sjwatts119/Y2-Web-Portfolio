@@ -28,12 +28,12 @@ if(!$enrolledUsers){
 
 else{
     echo "<table id='usersTable' class='usersTable'>";
-    echo "<td>" . "<div class='tableHeader'>User ID</div>" . "</td>";
-    echo "<td>" . "<div class='tableHeader'>Email</div>" . "</td>";
-    echo "<td>" . "<div class='tableHeader'>First Name</div>" . "</td>";
-    echo "<td>" . "<div class='tableHeader'>Last Name</div>" . "</td>";
-    echo "<td>" . "<div class='tableHeader'>Job Title</div>" . "</td>";
-    echo "<td>" . "<div class='tableHeader'>Remove User</div>" . "</td>";
+    echo "<td>" . "<div class='tableHeader fields'>User ID</div>" . "</td>";
+    echo "<td>" . "<div class='tableHeader fields'>Email</div>" . "</td>";
+    echo "<td>" . "<div class='tableHeader fields'>First Name</div>" . "</td>";
+    echo "<td>" . "<div class='tableHeader fields'>Last Name</div>" . "</td>";
+    echo "<td>" . "<div class='tableHeader fields'>Job Title</div>" . "</td>";
+    echo "<td>" . "<div class='tableHeader fields'>Remove User</div>" . "</td>";
     while ($row = mysqli_fetch_assoc($enrolledUsers)) {
         echo "<tr id=row" . $row["userID"] . ">";
         foreach ($row as $field => $value) {
@@ -43,7 +43,7 @@ else{
             if ($field === key($row)){$UIDValue = $value;}
     
             //Inputs the current field into the table
-            echo "<td><div class='field'>" . $value . "</div></td>"; 
+            echo "<td><div class='fields'>" . $value . "</div></td>"; 
     
             //finds last element in each row so a button can be added afterwards
             end($row);
