@@ -29,8 +29,8 @@ html,body{
 }
 
 .field::-webkit-scrollbar {
-  height:5px;
-  width:8px;
+  height:4px;
+  width:7px;
 }
 
 .field::-webkit-scrollbar-thumb{
