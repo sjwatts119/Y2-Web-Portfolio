@@ -38,17 +38,19 @@ else{
             //Closes the prepared statement.
             mysqli_stmt_close($stmt);
 
-            $stmt = $db_connect->prepare("SELECT `email`, `firstName` FROM `users` WHERE `userID` = ?");
+            $stmt = $db_connect->prepare("SELECT `email`, `firstName`, `courseDate` FROM `users` WHERE `userID` = ?");
             $stmt->bind_param("i", $userID);
             if($stmt->execute()){
                 $result = $stmt->get_result();
                 $user = $result->fetch_assoc();
                 $to = "<" . $user["email"] . ">";
-                $subject = "You have been Enrolled on a Course";
+                $subject = "You have been Enrolled on a Course.";
 
-                $message = "<h3>Hello " . $user["email"];
-                $message .= ",</br></br>You have been successfully enrolled on course: " . $courses["courseTitle"] . "";
+                $message = "Hello <h3>" . $user["email"] . "</h3>";
+                $message .= ",</br></br>You have been successfully enrolled on course: </h3>" . $courses["courseTitle"] . "</h3>";
+                $message .= ",</br></br>This course starts on: <h3>" . $courses["courseDate"] . "</h3>";
                 $message .= ",</br></br>If you have any questions regarding this, please contact an admin.</h3>";
+                $message .= ",</br></br>Thanks";
 
                 $headers = 'From: <webmaster@WS296281-wad.remote.ac>' . "\r\n" .
                     'BCC: <mail@WS296281-wad.remote.ac>' . "\r\n" .
