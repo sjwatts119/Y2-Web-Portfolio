@@ -10,12 +10,11 @@
   <!-- Link Main CSS Stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/home.css">
-  <!-- Anime.JS Animations Library -->
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
   <!-- Google Fonts --> 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/3.0.0/flickity.css" integrity="sha512-TZTUnuHs1njGko8PJqZlHzqZTZd880A+BvhR1jy1v4mWB4VFKVLG/eK9LYdDjxqNLmttSC1ygmqg6rkYjnEgaQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
@@ -49,8 +48,9 @@
       </div>
     </nav>
 
-    <div class="tableWrap" id="enrolled"> <?php include "../php/retrieve_enrolments.php"?> </div>
-    <div class="tableWrap" id="non-enrolled"> <?php include "../php/retrieve_non_enrolled.php"?> </div>
+    <div class="tableWrap enrolled-carousel" id="enrolled"> <?php include "../php/retrieve_enrolments.php"?></div>
+
+    <div class="tableWrap unenrolled-carousel" id="non-enrolled"> <?php include "../php/retrieve_non_enrolled.php"?></div>
     
 </body>
 </html>
@@ -61,6 +61,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <!-- SWAL (Sweet Alerts) CDN LINK -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- flickity CDN Link -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/3.0.0/flickity.pkgd.min.js" integrity="sha512-achKCfKcYJg0u0J7UDJZbtrffUwtTLQMFSn28bDJ1Xl9DWkl/6VDT3LMfVTo09V51hmnjrrOTbtg4rEgg0QArA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script src="../js/scripts.js"></script>
 <script rel="preconnect" src="../js/preloader.js"></script>
 <script src="../js/add_enrolment_form.js"></script>

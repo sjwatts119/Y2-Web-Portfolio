@@ -13,3 +13,14 @@
     background-position: center;
 }
 
+.flickity-cell {
+    width: 60%;
+    height: 400px;
+    position: relative;
+    padding:50px;
+  }
+  
+  .flickity-cell .container {
+    height: 100%;
+  }
+
